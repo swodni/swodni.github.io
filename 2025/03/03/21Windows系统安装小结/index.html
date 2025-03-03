@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="Windows系统安装启动小结"><a href="#Windows系统安装启动小结" class="headerlink" title="Windows系统安装启动小结"></a>Windows系统安装启动小结</h1><p>  <strong>通过前面的介绍,我们可以大致总结出以下几点:</strong></p>
+<p>  <strong>1.对于一个能够正常启动系统的硬盘,至少包含两个分区:ESP分区和C盘.</strong></p>
+<p>  <strong>2.ESP分区里有两个重要的文件,分别是BCD文件和efi程序.</strong></p>
+<p>  <strong>3.UEFI固件扫描FAT32或FAT16的ESP分区,通过特定的目录结构识别到bootmgfw.efi,并把它展示在UEFI启动菜单里.</strong></p>
+<p>  <strong>4.运行bootmgfw.efi后,这个efi程序可以识别读取相同目录下的BCD文件.</strong></p>
+<p>  <strong>5.BCD文件里存储着各个操作系统启动的配置信息,各个Windows操作系统启动时运行的第一个文件都是\Windows\system32里的winload.efi.</strong></p>
+<p>  <strong>6.如果BCD文件里只有一个操作系统的配置信息,那么Windows boot manager界面不显示启动菜单,直接启动这个操作系统.若BCD里有多个操作系统的配置信息,那么都列在Windows boot manager菜单里.</strong></p>
+<p>  <strong>7.编辑BCD菜单是一个很复杂的操作,使用BOOTICE.exe可以简化这种操作.BOOTICE需要我们掌握其中的大部分功能的用法.</strong></p>
+<h3 id="但是-并不是所有的系统都是以这种传统的方式安装的-还存在3种其他的系统运行方式-我们即将进行讲解"><a href="#但是-并不是所有的系统都是以这种传统的方式安装的-还存在3种其他的系统运行方式-我们即将进行讲解" class="headerlink" title="但是,并不是所有的系统都是以这种传统的方式安装的,还存在3种其他的系统运行方式,我们即将进行讲解."></a>但是,并不是所有的系统都是以这种传统的方式安装的,还存在3种其他的系统运行方式,我们即将进行讲解.</h3></main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

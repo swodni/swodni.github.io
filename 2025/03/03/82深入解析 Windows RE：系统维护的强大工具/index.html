@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="深入解析-Windows-RE-系统维护的强大工具"><a href="#深入解析-Windows-RE-系统维护的强大工具" class="headerlink" title="深入解析 Windows RE:系统维护的强大工具"></a>深入解析 Windows RE:系统维护的强大工具</h1><p>在日常使用 Windows 的过程中, 用户难免会遇到系统启动故障、无法正常操作等问题.这时, 一个熟悉又陌生的工具——Windows Recovery Environment (Windows RE)——往往能够扭转局面.本文将带你全面了解 Windows RE 的功能、工作原理以及使用方法.</p>
+<hr>
+<h2 id="什么是-Windows-RE"><a href="#什么是-Windows-RE" class="headerlink" title="什么是 Windows RE?"></a><strong>什么是 Windows RE?</strong></h2><p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/82re.png"></p>
+<p>Windows Recovery Environment**(Windows 恢复环境)**, 简称 Windows RE.它是 Windows 系统自带的功能,Windows RE 通常安装在系统磁盘的隐藏分区中, 并在系统启动失败时自动加载.</p>
+<p>它的核心目标是提供一套诊断和修复工具, 让用户能够在系统无法正常启动时依然对其进行修复或管理.</p>
+<p>对于 Windows RE ,究其<strong>本质</strong>,其实就是微软官方出品的一个有<strong>图形用户界面</strong>的 Windows PE.</p>
+<p>然而,它的功能和我们中国第三方制作的各大 Windows PE 还是相差甚远.</p>
+<hr>
+<h2 id="Windows-RE-身在何处"><a href="#Windows-RE-身在何处" class="headerlink" title="Windows RE 身在何处?"></a>Windows RE 身在何处?</h2><p>Windows RE被操作系统安装放置在磁盘的一个隐藏分区里面.一般名为”Recovery”.</p>
+<p>这个分区不会在Windows文件资源管理器里面显示出来,因为他没有盘符,也不支持分配盘符挂载.这是由这个分区的<strong>分区参数</strong>决定的.</p>
+<p>在**”磁盘管理”**里面右键这个恢复分区,选项都显示为灰色,表示不可操作.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/82%E9%9A%90%E8%97%8F%E5%88%86%E5%8C%BA.png"></p>
+<hr>
+<h2 id="Windows-RE-的主要功能"><a href="#Windows-RE-的主要功能" class="headerlink" title="Windows RE 的主要功能"></a><strong>Windows RE 的主要功能</strong></h2><p>Windows RE 提供了以下几种主要功能, 每一项都能针对不同的系统问题发挥作用:</p>
+<h3 id="1-启动修复"><a href="#1-启动修复" class="headerlink" title="1. 启动修复"></a>1. <strong>启动修复</strong></h3><ul>
+<li><strong>用途</strong>: 修复导致系统无法正常启动的问题, 如缺失或损坏的启动文件.</li>
+<li><strong>特点</strong>: 该工具会自动扫描系统启动配置文件 (如 BCD), 并尝试修复相关问题.</li>
+</ul>
+<h3 id="2-系统还原"><a href="#2-系统还原" class="headerlink" title="2. 系统还原"></a>2. <strong>系统还原</strong></h3><ul>
+<li><strong>用途</strong>: 将系统恢复到之前创建的还原点, 从而撤销可能导致问题的更改.</li>
+<li><strong>适用场景</strong>: 软件安装失败、配置修改错误.</li>
+<li><strong>异常情况</strong>:系统可能没有还原点,导致无法还原.</li>
+</ul>
+<h3 id="3-命令提示符"><a href="#3-命令提示符" class="headerlink" title="3. **命令提示符 **"></a>3. **命令提示符 **</h3><ul>
+<li><strong>用途</strong>: 提供一个基于文本的交互界面, 用户可以手动执行高级命令进行修复.</li>
+<li><strong>高级操作</strong>: 包括修复磁盘分区、修复启动记录 (使用 <code>bootrec</code> 命令) 等.</li>
+</ul>
+<h3 id="4-系统映像恢复"><a href="#4-系统映像恢复" class="headerlink" title="4. 系统映像恢复"></a>4. <strong>系统映像恢复</strong></h3><ul>
+<li><strong>用途</strong>: 使用预先创建的系统映像文件, 将系统恢复到映像文件中的状态.</li>
+<li><strong>优势</strong>: 恢复速度快, 能完整恢复系统环境.</li>
+</ul>
+<h3 id="5-Windows-启动设置"><a href="#5-Windows-启动设置" class="headerlink" title="5. **Windows 启动设置 **"></a>5. **Windows 启动设置 **</h3><ul>
+<li><strong>用途</strong>: 允许用户通过进入安全模式、安全模式带网络支持等特殊启动模式来解决问题.</li>
+<li><strong>常见应用</strong>: 驱动冲突、恶意软件排查.</li>
+</ul>
+<hr>
+<h2 id="如何进入-Windows-RE"><a href="#如何进入-Windows-RE" class="headerlink" title="如何进入 Windows RE?"></a><strong>如何进入 Windows RE?</strong></h2><p>对于熟练的系统维护人员来说,最令人头疼的事情莫过于开机的时候如何进入UEFI,BIOS固件,选择从自己的U盘启动盘启动PE,因为不同的品牌电脑千差万别.</p>
+<p>如果无法正常进入Windows系统,而且无论如何也不能进入固件界面,那么我们也可以不妨试试Windows RE这个计算机内置PE进行调试.</p>
+<p>这对于一些Windows on ARM (Windows 平板) 的设备尤其有用.</p>
+<p><strong>Windows RE 提供了多种进入方式:</strong></p>
+<h3 id="1-系统自动触发"><a href="#1-系统自动触发" class="headerlink" title="1. 系统自动触发"></a><strong>1. 系统自动触发</strong></h3><p>当系统在三次或以上连续启动失败时, 会自动加载运行 Windows RE.</p>
+<h3 id="2-手动触发"><a href="#2-手动触发" class="headerlink" title="2. 手动触发"></a><strong>2. 手动触发</strong></h3><ol>
+<li>打开”开始”菜单,点击”电源”.</li>
+<li>按住 <code>Shift</code> 键的同时点击”重新启动”.</li>
+<li>系统将自动进入高级启动菜单, 选择”疑难解答 &gt; 高级选项”即可进入 Windows RE.</li>
+</ol>
+<h3 id="3-使用安装介质"><a href="#3-使用安装介质" class="headerlink" title="3. 使用安装介质"></a><strong>3. 使用安装介质</strong></h3><ol>
+<li>使用 USB 或 DVD 安装盘启动系统.</li>
+<li>在安装界面选择”修复计算机”, 即可进入 Windows RE.</li>
+</ol>
+<h3 id="4-使用热键"><a href="#4-使用热键" class="headerlink" title="4. 使用热键"></a><strong>4. 使用热键</strong></h3><p>很多电脑在开机的时候快速键击<code>F8</code>可以进入Windows RE.</p>
+<hr>
+<h2 id="Windows-RE-的底层原理"><a href="#Windows-RE-的底层原理" class="headerlink" title="Windows RE 的底层原理"></a><strong>Windows RE 的底层原理</strong></h2><p>Windows RE 是基于 Windows PE (Preinstallation Environment,预安装环境) 的一个特化版本.Windows PE 是一个小型操作系统, 主要用于安装、部署和修复 Windows.</p>
+<p><strong>轻量级</strong>: 仅包含基本的内核和少量驱动, 启动速度快.</p>
+<p><strong>灵活扩展</strong>: Windows RE 支持定制, 企业或高级用户可以添加自定义工具.</p>
+<hr>
+<h2 id="Windows-RE-的定制与管理"><a href="#Windows-RE-的定制与管理" class="headerlink" title="Windows RE 的定制与管理"></a><strong>Windows RE 的定制与管理</strong></h2><p>高级用户可以对 Windows RE 进行一定程度的定制.例如:</p>
+<h3 id="1-启用或禁用-Windows-RE"><a href="#1-启用或禁用-Windows-RE" class="headerlink" title="1. 启用或禁用 Windows RE"></a>1. <strong>启用或禁用 Windows RE</strong></h3><ul>
+<li><strong>命令</strong>: 在cmd中,使用 <code>reagentc /enable</code> 或 <code>reagentc /disable</code>以启用或禁用Windows RE.</li>
+</ul>
+<h3 id="2-添加工具"><a href="#2-添加工具" class="headerlink" title="2. 添加工具"></a>2. <strong>添加工具</strong></h3><ul>
+<li>将自定义的诊断工具或脚本集成到 Windows RE 的 wim 中, 增强其功能.</li>
+</ul>
+<h3 id="3-创建恢复介质"><a href="#3-创建恢复介质" class="headerlink" title="3. 创建恢复介质"></a>3. <strong>创建恢复介质</strong></h3><ul>
+<li><strong>工具</strong>: 使用 Windows 自带的”恢复驱动器”创建一个 USB 恢复介质, 以备不时之需.</li>
+</ul>
+<hr>
+<p>Windows RE 是电脑小白的救命稻草,是运维人员的好帮手,在无法正常使用 Windows PE 的时候帮我们一把.</p>
+<p>Windows RE 的功能很全面,但是很多功能的实现需要使用cmd命令行工具.这对于运维人员来说可能是一个挑战.</p>
+<p>但是,计算机维护人员可以使用自己的U盘在 Windows RE 里面运行U盘里的程序软件,提升工作效率.</p>
+<p>在下一篇文章中,我将介绍如何在 Windows RE 环境里使用U盘,并且运行U盘里面的应用程序.</p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="安装VHD系统"><a href="#安装VHD系统" class="headerlink" title="安装VHD系统"></a>安装VHD系统</h1><p>  <strong>VHD,全称Virtual Hard Disk,是一种虚拟技术,由微软公司开发.主要目的是适用于微软开发的Hyper-V虚拟机,是安装虚拟机的虚拟机文件.</strong></p>
+<p>  <strong>你可能有点疑惑:虚拟机不是只有VMWare吗?怎么突然出来里一个Hyper-V?</strong></p>
+<p>  <strong>其实VM也只是虚拟机市场中的一份子而已,只不过他相当优秀,掩盖了其他虚拟机的名声.Hyper-V是微软开发的一个和VM功能类似的虚拟机软件,对于Windows10Professional系统,这个虚拟机是自带的.而对于Windows10家庭版,没有这种功能.</strong></p>
+<p>  <strong>我们不需要使用Hyper-V虚拟机软件,因为VHD有一个更为重要的功能:VHD作为一个实体文件,可以用来启动真实的物理机.</strong></p>
+<p>  <strong>那你又要问了,为什么VMWare创造的那些虚拟机文件不能启动实体物理机呢?</strong></p>
+<p>  <strong>原因很简单:VMWare不是微软开发的,VHD是微软开发的!  :)</strong></p>
+<h2 id="VHD的特点"><a href="#VHD的特点" class="headerlink" title="VHD的特点"></a>VHD的特点</h2><p>  <strong>作为一个虚拟机文件,VHD具有以下特点:</strong></p>
+<p>  <strong>1.单文件类型:与VM虚拟机不同,VHD文件是一个单一的文件,也就是说,一个VHD文件包含了一整个Windows系统,各种软件硬件等等.然而,VM所创建的虚拟机在一个文件夹里,一个虚拟机的运行需要该文件夹内众多的文件.</strong></p>
+<p>  <strong>2.可差分性:这是VHD系统的一个重要的特性,也是我们介绍VHD系统的主要原因之一.对于一个安装好系统的VHD文件,我们可以创建他的差分子文件.他的差分子文件同样也是VHD文件,同样可以启动虚拟机,可以看做是第一个VHD系统的”儿子”.这个儿子里的所有文件在刚刚差分的时候与他的爸爸是一模一样的.</strong></p>
+<p>  <strong>但是需要强调的是,这个儿子并没有完全复制他爸爸的所有文件,(这也可以通过差分文件的创建速度看出来,瞬间完成创建,不可能瞬间复制一个系统那么大的文件)而是使用了一种类似”引用”的方法.查看儿子的属性时,我们可以看到,一开始这个儿子只有几MB,但是双击打开儿子,可以看见他爸爸体内所有的文件.</strong></p>
+<p>  <strong>这里使用一个比喻可以更好地理解他的父子关系.父VHD是一张写字写得满满的白纸(字 代表文件).子VHD是一块玻璃,放在这张白纸上,透过玻璃我们可以看见父VHD里的所有文件,我们还可以在玻璃上写字,也就是在子VHD系统里进行各种操作.</strong></p>
+<p>  <strong>很明显,在玻璃上写字(运行子VHD系统)不会对父VHD系统(白纸)造成任何影响.如果我们一不小心在玻璃上写下了病毒,导致子VHD系统崩溃了,那么,我们只要扔掉这块玻璃,换一块新的玻璃,就可以又得到一个像父VHD一样的崭新的系统了!</strong></p>
+<p>  <strong>这种特殊的性质,带来了VHD系统的第三大特点:</strong></p>
+<p>  <strong>3.秒备份,秒还原.</strong></p>
+<p>  <strong>秒备份:对于一个功能正常的父VHD系统,我们可以差分出他的子VHD系统.以后我们只是用儿子,把父亲”供起来”,这就叫 <em>秒备份.</em></strong></p>
+<p>  <strong>秒还原:如果儿子死掉了,把儿子删除,创建一个新的儿子,实现了把父VHD系统还原到他一开始的样子.但是,死儿子里我们自己新添加的文件也会随着死儿子一起被删除.这是系统备份的一个共同的缺点.</strong></p>
+<p>  <strong>4.创建差分系统树:事实上,我们还可以给父VHD好多儿子,对子VHD再次进行差分,形成孙VHD,孙VHD差分形成曾孙VHD……形成一个庞大的VHD家族.由于每个差分都只是一层玻璃,所以,在一开始产生这些差分的时候,他们只占用极小的磁盘空间.利用这一性质,我们可以在我们自己的物理机里差分出无数个系统,就好像我们的电脑安装了无数个系统一样.</strong></p>
+<p>  <strong>很多人利用这一特点给家里的成员一人一个系统,实际上都是差分的子系统.</strong></p>
+<h3 id="然而-为了安全-我还是建议你在VM虚拟机里安装VHD系统并制作其差分-虽然这可能显得很奇怪-在虚拟机里安装虚拟机-俄罗斯套娃"><a href="#然而-为了安全-我还是建议你在VM虚拟机里安装VHD系统并制作其差分-虽然这可能显得很奇怪-在虚拟机里安装虚拟机-俄罗斯套娃" class="headerlink" title="然而,为了安全,我还是建议你在VM虚拟机里安装VHD系统并制作其差分,虽然这可能显得很奇怪,在虚拟机里安装虚拟机.(俄罗斯套娃)  :)"></a>然而,为了安全,我还是建议你在VM虚拟机里安装VHD系统并制作其差分,虽然这可能显得很奇怪,在虚拟机里安装虚拟机.(俄罗斯套娃)  :)</h3><h2 id="对VHD系统的理解"><a href="#对VHD系统的理解" class="headerlink" title="对VHD系统的理解"></a>对VHD系统的理解</h2><p>  <strong>VHD本质是一个文件,后缀名为.vhd或.vhdx.其中,.vhdx更为高级,推荐大家都使用.vhdx格式.</strong></p>
+<p>  <strong>.vhdx文件实际是一个压缩包,把一个系统的所有所需文件全都放在这里.我们点开VHD文件时,在文件资源管理器里出现一个新的分区,一般盘符是Z:盘.这意味着操作系统此时附加了VHD文件,把VHD文件当做了一个虚拟磁盘.这时打开 磁盘管理 ,可以看到一个新的磁盘,他便是VHD虚拟磁盘.我们可以像普通磁盘一样对虚拟磁盘进行各种操作.安装系统时,我们可以直接选择把系统文件安装在VHD虚拟磁盘.</strong></p>
+<h2 id="初步安装VHD系统"><a href="#初步安装VHD系统" class="headerlink" title="初步安装VHD系统"></a>初步安装VHD系统</h2><p>  <strong>在VMWare中,新建一个虚拟机.操作与以前相同,但是我们不直接选择系统ISO光盘,而是选择稍后安装操作系统,创建完成后,我们编辑虚拟机的硬件,把微pe的ISO镜像添加,使新的虚拟机可以从pe系统启动.</strong></p>
+<p>  <strong>进入pe系统,我们再次编辑虚拟机设置,把和Windows10ISO镜像添加.这就完成了虚拟机的初始配置工作.</strong></p>
+<h3 id="使用winntsetup安装VHD系统"><a href="#使用winntsetup安装VHD系统" class="headerlink" title="使用winntsetup安装VHD系统"></a>使用winntsetup安装VHD系统</h3><p>  <strong>安装VHD系统的重要一步就是创建VHD文件.一旦成功配置了VHD文件,并把它挂载为虚拟磁盘,其余的安装操作系统步骤就与传统方法差异不大.首先需要用DG初始化VM的虚拟磁盘,分配一个EFI分区和C盘分区.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.点击winntsetup右下角的 VHD-&gt;创建</span><br><span class="line">2.选择VHD文件的存放位置</span><br><span class="line">3.选择类型为VHDX</span><br><span class="line">4.虚拟磁盘大小25GB为最低要求.注意不要比自己的VM创建的硬盘还大就可以.</span><br><span class="line">5.分区样式可以只选择GPT-UEFI,因为现代的电脑已经抛弃了BIOS-MBR了</span><br><span class="line">6.选择 动态扩展,一路确定</span><br></pre></td></tr></table></figure>
+
+<p><strong>动态扩展:使用多少空间,就占磁盘多大空间(虚拟磁盘只增大不减小,删除虚拟磁盘的文件不会使真正磁盘空间变大)</strong></p>
+<p>  <strong>固定大小:直接占用25GB空间</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22winntsetup2.png" alt="3649ad52ed9dd996b2a4e153dd1b2766.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.选择安装映像文件的位置:与正常安装系统操作相同</span><br><span class="line">2.选择可引导驱动器的位置:本质是让你选择ESP分区.点击下拉菜单可见两个绿色的EFI分区,一个是VM的虚拟磁盘里的EFI分区,一个是VHD虚拟磁盘的EFI分区.请记住,相对于VHD虚拟磁盘,需要把VM的虚拟磁盘看成一个真的磁盘.毕竟我们是在虚拟机里安装虚拟机:)</span><br><span class="line">我们不能选择VHD虚拟磁盘的EFI分区作为引导分区.我们需要选择VM虚拟磁盘的EFI分区.</span><br><span class="line">3.选择安装驱动器的位置:应选择VHD虚拟磁盘(一般是Z:盘)</span><br><span class="line">4.安装即可</span><br></pre></td></tr></table></figure>
+
+<p>  <img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22winnt1.png" alt="1"></p>
+<p><strong>思考一下:为什么我们不能选择VHD虚拟磁盘的EFI分区作为引导分区呢?</strong></p>
+<p>  <strong>如果这么选择,那么我们的目的就是让UEFI固件识别扫描这个EFI分区.那么,实际上,这个EFI分区在哪里呢?</strong></p>
+<p>  <strong>没错,他在那个.vhdx文件里面啊!</strong></p>
+<p>  <strong>难道我们能难为UEFI固件,让他先去识别一下vhdx文件,然后挂载XHDX里面的EFI分区,再识别这个分区吗?</strong></p>
+<p>  <strong>UEFI现在还是没有这种能力的.</strong><br>  <strong>所以,VHD系统是怎么启动的呢?</strong></p>
+<p>  <strong>这就要归功于Windows boot manager了.</strong></p>
+<p>  <strong>虽然UEFI无法读取vhdx文件,Windows boot manager却可以做到这一点.Windows boot manager能做到这一点的本质其实是bootmgfw.efi可以读取vhdx文件.通过efi程序,我们可以做到vhd启动.</strong></p>
+<h2 id="制作VHD差分子系统"><a href="#制作VHD差分子系统" class="headerlink" title="制作VHD差分子系统"></a>制作VHD差分子系统</h2><p>  <strong>现在,父VHD系统已经安装完成了.开始制作他的子孙吧!</strong></p>
+<p>  <strong>很多工具软件可以产生VHD的差分子系统.这里我们推荐BOOTICE这款神级轻量小工具.</strong></p>
+<blockquote>
+<p>差分系统一定要在pe系统里制作!</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.打开bootice.点击 磁盘镜像-&gt;差分VHD</span><br><span class="line">2.选择父文件位置及你想要的子文件位置.</span><br><span class="line">3.选择保存文件类型为*.vhdx</span><br><span class="line">4.创建</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>在你选择的目录下,会出现一个新的vhdx文件.笔者把它起名为win10son1.vhdx.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22%E5%B7%AE%E5%88%86vhd.png" alt="898b520bef2426bdccd373967cbb0a74.png"></p>
+<p>  <strong>至此,一个子VHD建设完成.</strong></p>
+<h3 id="为子VHD添加BCD引导菜单"><a href="#为子VHD添加BCD引导菜单" class="headerlink" title="为子VHD添加BCD引导菜单"></a>为子VHD添加BCD引导菜单</h3><p>  <strong>子VHD虽然已经产生了,但是他没有引导他的BCD菜单.所以,我们需要手动制作他的引导菜单.</strong></p>
+<p><strong>操作方法:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.打开BOOTICE软件</span><br><span class="line">2.点击 BCD编辑</span><br><span class="line">3.给自己的VM虚拟机的虚拟硬盘的EFI分区分配一个盘符,使它可以在文件资源管理器里显示.你可以用DG做到这一点.</span><br><span class="line">4.选择 其他BCD文件,点击 ... 浏览文件,选择你刚刚挂载的EFI分区,打开里面的BCD文件(具体步骤以前讲过,这里不再赘述)</span><br><span class="line">5.点击 添加-&gt;新建VHD启动项</span><br><span class="line">6.启动磁盘和启动分区全都选择&quot;真实的&quot;磁盘和分区.这里的&quot;真实&quot;指的是相对于VHD虚拟磁盘的&quot;真实&quot;.也就是选择VM虚拟机的虚拟磁盘.你可以想一想这是为什么.</span><br><span class="line">7.设备文件 这一项,需要填写你的子VHD文件所在的位置.由于上面两项已经选择了磁盘和分区,所以这里我们只需要写出相对路径即可.比如,笔者的子VHD在C盘根目录下,我吹需在这里填写 \win10son1.vhdx</span><br><span class="line">8.你可以修改菜单标题为自己喜欢的名字.笔者改为win10son1</span><br><span class="line">9.保存当前系统设置-&gt;保存全局设置</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22vhdbcd.png" alt="88e2eb6edc8bcd8743fde849b5ac37bd.png"></p>
+<p>  <strong>这样,子VHD的BCD引导文件就做好了.这是你可以重启虚拟机,试一下看看Windows boot manager菜单里是否会有两个选项.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22%E5%90%AF%E5%8A%A8%E8%8F%9C%E5%8D%95.png" alt="6f4d5a3a9b6b7d7012d6e1f003c00a99.png"></p>
+<blockquote>
+<p><strong>需要注意的是,VHD经过差分后,父VHD将变得不可使用.也就是说,我们不可以打开父VHD系统了.但是不是不能打开,只是如果打开的话,他与他的儿子之间的纽带会断裂,这会导致它的儿子无法正常启动.所以一般为了保险起见,我们会删除父VHD在BCD菜单里的引导,防止错误操作导致启动了父VHD系统,导致其差分子系统失效.</strong></p>
+<p><strong>同样的,如果一个子VHD系统拥有它的差分子系统了,那么他也就相当于变成了”父亲”,他也是不可以打开的,如果打开,则孙VHD就无法运行了.</strong></p>
+</blockquote>
+<p>  <strong>VHD子系统文件是可以复制的.所以,使用BOOTICE得到一个子VHD之后,我们可以复制出很多他的副本,这些副本每一个都是一个子VHD.我们可以为每一个副本添加BCD引导(虽然这会很累).笔者曾经一次做了10个子VHD,在VM虚拟机里都可以正常运行.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/2210%E4%B8%AA%E7%B3%BB%E7%BB%9F.gif" alt="e77fce7b6386bbcc2f3a6a43818df806.gif"></p>
+<h2 id="进入VHD系统"><a href="#进入VHD系统" class="headerlink" title="进入VHD系统"></a>进入VHD系统</h2><p>  <strong>根据VHD系统的性质,我们可以推测VHD系统的一些特征.</strong></p>
+<p>  <strong>1.被运行的VHD系统的vhdx文件在VHD系统里应该是只读的.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22vhd%E5%8F%AA%E8%AF%BB.png" alt="411827475f872bd14ab51bb47544ba8d.png"></p>
+<p>  <strong>2.这个vhdx文件的大小应该显示为VHD虚拟硬盘的最大大小,因为它已经被虚拟成了系统盘.笔者的是25GB.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22vhd%E8%99%9A%E6%8B%9F%E5%A4%A7%E5%B0%8F.png" alt="9a365864a3be5b4bbfc33bb8160e624b.png"></p>
+<p>  <strong>3.子VHD的父文件在子VHD系统里应该也是只读的.</strong></p>
+<h2 id="VHD常见问题"><a href="#VHD常见问题" class="headerlink" title="VHD常见问题"></a>VHD常见问题</h2><p>  <strong>有的时候,由于各种原因,导致VHD系统不能正常启动.下面是一些常见问题:</strong></p>
+<p>  <strong>1.情景:我制作了1个父VHD和好几个子VHD,但是有的VHD系统可以启动,有的却不能启动.我的BCD文件没有问题.错误代码提示:VHD BOOT HOST VOLUME NOT ENOUGH SPACE</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/22%E6%8B%94%E7%94%B5%E6%BA%90%E6%8A%A5%E9%94%99.png" alt="904968a39a8b1140e4513d0fa85ecf95.png"></p>
+<p>  <strong>分析原因:很可能是由于不正确关闭虚拟机导致的.</strong></p>
+<p>  <strong>在测试的时候,我们很容易犯一个错误,就是看见我们的VHD系统成功启动了,就立刻关机,进行下一步测试.立刻关机的时候,我们使用的是 <em>小三角</em> 下拉菜单里的 关机(O) 这个选项.这个选项个操作实际是给虚拟机”拔电源”一样的断电操作.这将导致一个严重的问题:VHD虚拟磁盘没有正确卸载.所以,在VHD系统里看见的25GB大小的vhdx文件,就真的”变成了”25GB大小.如果正常关机,则VHD虚拟磁盘正常卸载,vhdx文件会恢复它本来的大小.(通常一开始几百MB,随着使用增加)</strong></p>
+<p>  <strong>所以,如果你的磁盘只有60GB大小,每次都是”断电”操作,那么,启动了两个VHD系统后,VM的磁盘就已经被占用了50GB.而再启动第三个新的VHD系统仍然需要25GB,显然剩下的10GB是不够的.所以,需要手动”释放”这些未卸载的VHD虚拟磁盘.具体方法就是选择一个可以打开的系统或者进入pe系统,双击打开未卸载的VHD虚拟磁盘,然后再关闭,这样就卸载完成了.</strong></p>
+<p>  <strong>2.情景:VHD子系统无法启动.</strong></p>
+<p>  <strong>分析:请回忆一下自己的父系统在创建完子系统之后有没有打开过.如果打开过就无法启动子系统.因为这会导致差分链断裂.</strong></p>
+<h3 id="至此-VHD系统的所有内容基本介绍完毕-如有不足请见谅-大神请轻喷"><a href="#至此-VHD系统的所有内容基本介绍完毕-如有不足请见谅-大神请轻喷" class="headerlink" title="至此,VHD系统的所有内容基本介绍完毕.如有不足请见谅,大神请轻喷 :)"></a>至此,VHD系统的所有内容基本介绍完毕.如有不足请见谅,大神请轻喷 :)</h3></main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

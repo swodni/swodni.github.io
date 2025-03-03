@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <div class="post-list">
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/21Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/"></a>
+    <div class="post-item-summary">
+      Windows系统安装启动小结  通过前面的介绍,我们可以大致总结出以下几点:
+  1.对于一个能够正常启动系统的硬盘,至少包含两个分区:ESP分区和C盘.
+  2.ESP分区里有两个重要的文件,分别是BCD文件和efi程序.
+  3.UEFI固件扫描FAT32或FAT16的ESP分区,通过特定的目录结构识别到bootmgfw.efi,并把它展示在UEFI启动菜单里.
+  4.运行bootmgfw.efi后,这个efi程序可以识别读取相同目录下的BCD文件.
+  5.BCD文
+      <a class="read-more" href="/2025/03/03/21Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/22%E5%AE%89%E8%A3%85VHD%E7%B3%BB%E7%BB%9F/"></a>
+    <div class="post-item-summary">
+      安装VHD系统  VHD,全称Virtual Hard Disk,是一种虚拟技术,由微软公司开发.主要目的是适用于微软开发的Hyper-V虚拟机,是安装虚拟机的虚拟机文件.
+  你可能有点疑惑:虚拟机不是只有VMWare吗?怎么突然出来里一个Hyper-V?
+  其实VM也只是虚拟机市场中的一份子而已,只不过他相当优秀,掩盖了其他虚拟机的名声.Hyper-V是微软开发的一个和VM功能类似的虚拟机软件,对于Windows10Professional系统,这个虚拟机是自带的.而对
+      <a class="read-more" href="/2025/03/03/22%E5%AE%89%E8%A3%85VHD%E7%B3%BB%E7%BB%9F/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/23WIMBOOT%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"></a>
+    <div class="post-item-summary">
+      WIMBOOT启动模式wimboot简述wimboot,是微软公司从Windows8开始引入的新功能,旨在减少系统文件对C盘的占用,提高计算机的运行速度,为各个电脑生产厂家更加方便的初始化他们的计算机.对于运维人员来说,我们最看重的是wimboot在空间占用上的优越特征.使用wimboot模式配置的电脑,相比普通模式,可以一次性的节省至少20GB的C盘空间.笔者的电脑使用wimboot前C盘占用40GB,使用wimboot后C盘占用15GB,足见wimboot的节约.
+  此
+      <a class="read-more" href="/2025/03/03/23WIMBOOT%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/24Compact%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8/"></a>
+    <div class="post-item-summary">
+      Compact模式启动  compact,是压缩的意思.顾名思义,这是一种压缩启动技术.
+  Compact启动模式比wimboot出现得还要晚,是微软在Windows10中才引入的一种启动模式.相比于普通启动和wimboot,compact启动有以下几个优点:
+  1.减少占用C盘空间:compact把系统文件在C盘内直接进行压缩,从而达到减少占用的目的.
+  2.灵活性强:我们可以方便的开启或关闭compact模式,就像打开或关闭一个功能一样.我们可以在正常的Window
+      <a class="read-more" href="/2025/03/03/24Compact%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/09%E5%9C%A8VMWare%E4%B8%AD%E5%88%9D%E6%AD%A5%E5%AE%89%E8%A3%85Windows10%E7%B3%BB%E7%BB%9F/"></a>
+    <div class="post-item-summary">
+      在VMWare中初步安装Windows10系统
+  在本节中,我们使用VM初步安装一个Windows10虚拟机.
+  为什么说是”初步”呢?因为本节的方法不涉及高级步骤(如使用PE系统等),主要目的让你熟悉首次安装系统的流程.高级方法安装系统会在未来介绍.
+新建虚拟机在VM中,点击 新建虚拟机
+操作方法:
+1.选择 典型 ,下一步
+
+
+2.选择安装程序光盘映像文件,点击 浏览,选择你已经事先下载好的Windows10 ISO映像文件,下一步.
+
+
+3.不填写Windows产品
+      <a class="read-more" href="/2025/03/03/09%E5%9C%A8VMWare%E4%B8%AD%E5%88%9D%E6%AD%A5%E5%AE%89%E8%A3%85Windows10%E7%B3%BB%E7%BB%9F/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/10Windows10%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE/"></a>
+    <div class="post-item-summary">
+      Windows10初步配置  你可以在你的虚拟机里自由的翱翔.
+  Windows10在VM里”初来乍到”.如何对它进行关键的初始配置呢?
+调整屏幕显示设置  虚拟机里的Windows10可能看起来很”小”.此时需要调整屏幕分辨率.
+操作方法:
+1.点击 开始 菜单,打开 设置
+2.点击第一项 系统
+3.在 屏幕 选项卡里,修改分辨率.修改数值依电脑而异.笔者的电脑选择1920x1080
+4.更改文本应用等项目的大小 按照自己的喜好调整,笔者的电脑选择150%
+
+激活Wind
+      <a class="read-more" href="/2025/03/03/10Windows10%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/11Office%E5%AE%89%E8%A3%85%E4%B8%8E%E6%BF%80%E6%B4%BB/"></a>
+    <div class="post-item-summary">
+      Office安装与激活
+如果你不想在你的虚拟机中安装office占用额外的空间,你可以只下载office安装镜像文件备用.  微软提供的office安装包同样是镜像文件,但这个镜像文件的格式是.img格式.在Windows10中可以正常双击打开.
+  建议在Windows10安装office2019,本文提供office2019下载链接(已高速,4.16GB):
+https://www.123pan.com/s/aktYjv-SglLH.html
+
+  双击打开img镜像,运
+      <a class="read-more" href="/2025/03/03/11Office%E5%AE%89%E8%A3%85%E4%B8%8E%E6%BF%80%E6%B4%BB/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/12VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E9%A1%B5%E4%BB%8B%E7%BB%8D/"></a>
+    <div class="post-item-summary">
+      VMWare虚拟机设置页介绍  我们可以对VM里安装的虚拟机进行个性化设置,向其中添加,修改,删除硬件.
+  点击菜单栏上的 虚拟机(M) ,点击 设置(S) .
+
+内存  内存越大,虚拟机运行速度越快.但是需要量力而行,相应的,虚拟机获得的内存越大,你的物理机所剩内存越小.
+处理器  不用进行设置.
+硬盘  创建虚拟机时设置的硬盘会在其中显示.VM默认虚拟硬盘大小60GB.在这里,你可以添加新的虚拟硬盘.添加后,虚拟机就好像真的又插入了一块新硬盘一样.
+CD&#x2F;DV
+      <a class="read-more" href="/2025/03/03/12VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E9%A1%B5%E4%BB%8B%E7%BB%8D/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/13%E9%80%9A%E8%BF%87ISO%E6%96%87%E4%BB%B6%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BC%A0%E6%96%87%E4%BB%B6/"></a>
+    <div class="post-item-summary">
+      通过ISO文件向虚拟机传文件  在上一节,我们已经学会如何向虚拟机添加ISO文件,使其作为一张虚拟光盘.现在介绍如何把自己想要传的文件打包成ISO格式.
+  软碟通单文件注册版下载链接:
+https://www.ilanzou.com/s/cpgmPFf
+
+https://www.123pan.com/s/aktYjv-tglLH.html
+
+操作方法:
+1.打开软碟通UltraISO
+2.把自己想要传的文件拖动到软碟通右栏窗口里
+3.点击左上角 文件-&gt;保存(Ctrl
+      <a class="read-more" href="/2025/03/03/13%E9%80%9A%E8%BF%87ISO%E6%96%87%E4%BB%B6%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BC%A0%E6%96%87%E4%BB%B6/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="post-item">
+    <a class="post-item-title" href="/2025/03/03/14PE%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/"></a>
+    <div class="post-item-summary">
+      PE系统介绍  PE系统是任何一个计算机维护人员必须拥有的一个系统.那么到底何为PE系统呢?
+引入  Windows10系统是一个功能完备且庞杂的完整系统.这个系统体积极大,一般的小U盘如果装上了Windows10系统也无法运行起来(因为读写速度太慢了).
+  那么,你有么有想过,一个没有桌面环境的Windows10长成什么样子?
+  大概应该是黑乎乎一片吧…
+  是的,它长这样:
+
+  *没有桌面,你我都不能进行任何操作,可是这对于程序员却小菜一碟.因为,他们使用 命令提示
+      <a class="read-more" href="/2025/03/03/14PE%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/"> ... </a>
+    </div>
+    <div class="post-item-extra">
+      <div class="date">2025.03.03</div>
+      <div class="tags">
+        
+      </div>
+    </div>
+  </section>
+  
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+</div>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

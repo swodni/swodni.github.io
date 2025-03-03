@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="Compact模式启动"><a href="#Compact模式启动" class="headerlink" title="Compact模式启动"></a>Compact模式启动</h1><p>  <strong>compact,是压缩的意思.顾名思义,这是一种压缩启动技术.</strong></p>
+<p>  <strong>Compact启动模式比wimboot出现得还要晚,是微软在Windows10中才引入的一种启动模式.相比于普通启动和wimboot,compact启动有以下几个优点:</strong></p>
+<p>  <strong>1.减少占用C盘空间:compact把系统文件在C盘内直接进行压缩,从而达到减少占用的目的.</strong></p>
+<p>  <strong>2.灵活性强:我们可以方便的开启或关闭compact模式,就像打开或关闭一个功能一样.我们可以在正常的Windows10里直接打开或关闭compact.这种操作相对于用户来说是透明的,我们除了C盘大小变化不会有任何感觉.</strong></p>
+<p>  <strong>3.系统更新后不失效:对于wimboot来说,系统更新是他的一个致命的弱点.系统更新是会改变C盘里几乎所有系统文件的版本号,导致他们与wim包里的文件不再相同.C盘里的文件指针就会被全部替换为真实的的更新后的文件,导致wim包失去它的功效.</strong></p>
+<p>  <strong>而对于compact来说,由于直接压缩的本身就是C盘的系统文件,而不涉及指针文件,所以更新后的系统文件也可以被再次压缩,所以不会失效.</strong></p>
+<h2 id="以compact模式安装Windows10"><a href="#以compact模式安装Windows10" class="headerlink" title="以compact模式安装Windows10"></a>以compact模式安装Windows10</h2><p>  <strong>在PE系统里以compact模式安装Windows10的操作十分简单,只要在winntsetup里的右下角选择 compact模式即可.其他操作与传统的安装方式的操作相同.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/24252627/24winntcompact.png" alt="90447c81cdb1072d642662faea6fab44.png"></p>
+<p>  <strong>你可能有疑问:下面为什么有那么多的compact?我应该选择哪个? :)其实,那些都是不同压缩率的compact模式,其中,LZX压缩率最大,节省空间最多,NONE是默认压缩模式,节省空间相对少一些.</strong></p>
+<p>  <strong>如果你在Windows10系统里想要使用或撤销compact,可以使用工具Dism++操作.</strong></p>
+<p><strong>操作方法:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.点击 恢复功能</span><br><span class="line">2.点击 撤销compact</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/24252627/24dismcompact.png" alt="2dccc4925acf9b1f3e8ee1b3d8089f5b.png"></p>
+<p>  <strong>这样可以取消Windows compact.</strong></p>
+<p>  <strong>同理,你可以通过这个软件启用compact.</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

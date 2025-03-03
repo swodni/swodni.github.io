@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="如何在-Windows-RE-里面运行自己U盘里面的软件"><a href="#如何在-Windows-RE-里面运行自己U盘里面的软件" class="headerlink" title="如何在 Windows RE 里面运行自己U盘里面的软件?"></a>如何在 Windows RE 里面运行自己U盘里面的软件?</h1><p>在上一篇文章中,我们介绍了 Windows RE 的基本知识.</p>
+<p>今天,笔者将向大家介绍,如果我们只能运行 Windows RE 这一个PE系统,那么我们应该如何运行我们U盘里面的系统维护软件呢?</p>
+<hr>
+<h2 id="判断系统是否包含-Windows-RE-环境"><a href="#判断系统是否包含-Windows-RE-环境" class="headerlink" title="判断系统是否包含 Windows RE 环境"></a>判断系统是否包含 Windows RE 环境</h2><p>首先,我们需要知道我们的计算机是否包含 Windows RE 系统.方法很简单:</p>
+<ul>
+<li>打开”磁盘管理”.(右键开始菜单,点击”磁盘管理”)</li>
+<li>查看有没有一个隐藏的恢复分区.(大小可能0.5GB-2GB)</li>
+</ul>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/82%E9%9A%90%E8%97%8F%E5%88%86%E5%8C%BA.png"></p>
+<p>如果有,那么恭喜,你的系统里面内置了 Windows RE .</p>
+<hr>
+<h2 id="如何进入-Windows-RE"><a href="#如何进入-Windows-RE" class="headerlink" title="如何进入 Windows RE?"></a>如何进入 Windows RE?</h2><p>最简单的办法是:开机显示logo并且下方在转圈的时候,强制断电重启,重复操作3次,电脑就自动进入了 Windows RE 的恢复环境.</p>
+<p>点击”疑难解答-&gt;高级选项”.即可进入 Windows RE 主操作界面.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84re0.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84re.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84re2.png"></p>
+<p>我们可以发现, Windows RE 的功能很有限.至少在图形用户界面上看是这样的.只有几个基本的功能.</p>
+<p>但是不得不说,界面简洁大气的磁贴风格,这很微软.</p>
+<p>如果想使用我们U盘里面的工具,那就需要使用”命令提示符”那个选项了.</p>
+<hr>
+<h2 id="在-Windows-RE-中使用U盘内的软件"><a href="#在-Windows-RE-中使用U盘内的软件" class="headerlink" title="在 Windows RE 中使用U盘内的软件"></a>在 Windows RE 中使用U盘内的软件</h2><p>我们插入U盘.点击 Windows RE 里面的”命令提示符”选项.之后,我们可以看见一个cmd窗口.这就是命令提示符,我们即将在这里输入一些基础的命令.</p>
+<p>我们使用<code>diskpart</code>工具,初步判断一下我们插入的U盘在 Windows RE 中是否被识别,以及它在 Windows RE 里面的盘符等基本信息.</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">diskpart</span><br><span class="line">list disk</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84listdisk.png"></p>
+<p>由上图可见,我的电脑里面有两个磁盘,通过容量大小的判断分析,第一个磁盘是我的电脑里的磁盘,第二个磁盘是我的U盘.</p>
+<p>我们继续:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list <span class="built_in">vol</span></span><br></pre></td></tr></table></figure>
+
+<p>这是列出电脑里所有磁盘分区的意思.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84listvol.png"></p>
+<p>由图可见,我的电脑里的E:\盘是卷标为ThinkPlus的可移动磁盘.表明这就是我的U盘.</p>
+<p>现在,我们可以退出diskpart工具.输入<code>exit</code>,回车退出.</p>
+<p>然后,我们的目的明确了:访问E盘里面的文件,运行里面的软件!</p>
+<p>所以,cmd界面输入:</p>
+<p><code>e:</code></p>
+<p>回车.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84%E7%A7%BB%E5%88%B0e.png"></p>
+<p>现在,cmd的工作目录已经移动到了E:盘,也就是我的U盘中.</p>
+<p>我们可以使用<code>tree /f</code>这个命令列出U盘里面的文件和文件夹,查找我们想运行的软件.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84tree.png"></p>
+<h3 id="例"><a href="#例" class="headerlink" title="例:"></a>例:</h3><p>我希望运行我的U盘里面<code>\7zip\7zfm.exe</code>这个软件.(7-zip软件)</p>
+<p>那么,我输入:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>zip\<span class="number">7</span>zfm.exe</span><br></pre></td></tr></table></figure>
+
+<p>回车即可运行.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/847z.png"></p>
+<p>然后我们就可以把他当做一个文件资源管理器,使用7-zip软件浏览计算机里的文件,运行PE工具软件了.</p>
+<p>如果只想运行某一个软件,可以直接输入那个软件的路径,然后回车就可以使用了.具体方法和打开7-zip的一致.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/8182838485868788/84%E6%B5%8B%E8%AF%95%E8%BF%90%E8%A1%8C.png"></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

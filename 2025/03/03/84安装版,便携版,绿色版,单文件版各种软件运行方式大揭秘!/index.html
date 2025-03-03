@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="安装版-便携版-绿色版-单文件版-各种软件运行方式大揭秘"><a href="#安装版-便携版-绿色版-单文件版-各种软件运行方式大揭秘" class="headerlink" title="安装版,便携版,绿色版,单文件版?各种软件运行方式大揭秘!"></a>安装版,便携版,绿色版,单文件版?各种软件运行方式大揭秘!</h1><p>在Windows系统中，我们日常使用的软件以多种形式存在，如安装版、便携版、绿色版和单文件版。每种形式的软件背后都有不同的运行机制和实现原理。本文将带你全面解析这些形式的特点和技术原理，让你对Windows系统中的软件运作方式有一个更深刻的理解。</p>
+<hr>
+<h2 id="软件安装包的原理"><a href="#软件安装包的原理" class="headerlink" title="软件安装包的原理"></a><strong>软件安装包的原理</strong></h2><p>软件安装包是最常见的软件形式，通常以<code>.exe</code>或<code>.msi</code>文件形式存在，运行后会引导用户完成安装流程。</p>
+<h3 id="安装包的工作机制："><a href="#安装包的工作机制：" class="headerlink" title="安装包的工作机制："></a><strong>安装包的工作机制：</strong></h3><p><strong>文件解压与复制：</strong><br>软件安装包的本质是<strong>压缩包</strong>.安装程序的首要任务是将软件的核心文件从压缩包中解压并复制到目标目录（通常是<code>C:\Program Files</code>或用户指定目录）。</p>
+<p><strong>注册表写入：</strong><br>安装过程中，安装程序会在Windows注册表中写入相关信息，包括：</p>
+<ul>
+<li>软件的安装路径</li>
+<li>版本号</li>
+<li>配置信息</li>
+<li>卸载路径（用于在“控制面板”或其他卸载工具中显示）</li>
+</ul>
+<p><strong>动态链接库注册：</strong><br>如果软件需要用到某些共享的DLL文件（动态链接库），安装程序可能会将它们注册到系统目录（如<code>C:\Windows\System32</code>）。</p>
+<p><strong>环境变量配置：</strong><br>一些软件需要修改系统的环境变量，如添加路径变量，确保其依赖的命令或程序可以被全局调用。</p>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a><strong>优点：</strong></h3><ul>
+<li>功能完整，支持复杂的大型功能。</li>
+<li>便于更新软件。</li>
+</ul>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a><strong>缺点：</strong></h3><ul>
+<li>占用系统资源较多。</li>
+<li>可能对系统产生“污染”（比如注册表冗余、环境变量冲突等）。</li>
+</ul>
+<hr>
+<h2 id="便携式软件的原理"><a href="#便携式软件的原理" class="headerlink" title="便携式软件的原理"></a><strong>便携式软件的原理</strong></h2><p>便携式软件是一种无需安装即可运行的软件。用户只需解压软件包文件到任意位置，双击<strong>主程序</strong>即可使用。这类软件常见于U盘中，便于随时随地使用。</p>
+<h3 id="工作机制："><a href="#工作机制：" class="headerlink" title="工作机制："></a><strong>工作机制：</strong></h3><p><strong>运行时不依赖注册表：</strong><br>便携式软件通常会通过配置文件（如<code>.ini,.config</code>文件）存储运行时所需的参数，而非写入Windows注册表。</p>
+<p><strong>文件路径：</strong><br>软件会根据当前运行位置动态调整文件路径。例如，程序从U盘的<code>D:\PortableApp</code>目录运行时，所有配置都会指向该路径。</p>
+<p><strong>无额外系统改动：</strong><br>便携式软件一般不修改系统环境变量或全局配置，<strong>所有的数据均保存在其自身目录内。</strong></p>
+<h3 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a><strong>优点：</strong></h3><ul>
+<li>便携性强，可以<strong>随时复制</strong>到其他设备使用。</li>
+<li><strong>不会污染系统</strong>，卸载只需删除文件夹。</li>
+</ul>
+<h3 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a><strong>缺点：</strong></h3><ul>
+<li>部分功能可能因缺乏注册表支持而受限。</li>
+<li>对于依赖复杂运行环境的软件（如大型游戏或开发工具），便携化实现较为困难。</li>
+</ul>
+<blockquote>
+<p>事实上,很多安装版的软件都可以变成便携式软件.安装的时候,他们的安装包把该软件的所有文件释放到你指定的目录里,安装后,我们可以随意复制这个安装文件夹到其他的任意位置(比如U盘中)独立使用.例如,微信属于这种软件.</p>
+<p>判断一个软件是否属于这种类型,可以观察软件的安装文件夹位置是否唯一,软件功能是否强大等等,需要一定的经验和技巧.</p>
+<p>一般来说,软件简单,安装包小,没有重要的注册表改动的安装版软件属于这种类型的软件.</p>
+</blockquote>
+<hr>
+<h2 id="绿色版软件的原理"><a href="#绿色版软件的原理" class="headerlink" title="绿色版软件的原理"></a><strong>绿色版软件的原理</strong></h2><p>绿色版软件是一种介于安装版和便携版之间的软件形式。虽然无需安装，但它通常具备部分安装版软件的功能。</p>
+<h3 id="工作机制：-1"><a href="#工作机制：-1" class="headerlink" title="工作机制："></a><strong>工作机制：</strong></h3><p><strong>简化的注册表操作：</strong><br>绿色版软件在运行时可能会临时向注册表写入必要信息，但这些信息会在软件关闭时<strong>自动清理。</strong></p>
+<p><strong>完整文件集成：</strong><br>软件运行所需的文件都存放在同一目录内，无需依赖外部组件。</p>
+<p><strong>伪安装机制：</strong><br>一些绿色版软件通过自定义脚本（如<code>.bat</code>或<code>.vbs</code>文件）模拟安装过程，动态调整配置，但这些改动不会持久化到系统中。</p>
+<h3 id="优点：-2"><a href="#优点：-2" class="headerlink" title="优点："></a><strong>优点：</strong></h3><ul>
+<li>使用方便，功能完整，适合快速部署。</li>
+<li>系统改动少，卸载方便。</li>
+</ul>
+<h3 id="缺点：-2"><a href="#缺点：-2" class="headerlink" title="缺点："></a><strong>缺点：</strong></h3><ul>
+<li>部分绿色版软件可能会遗漏依赖项，导致兼容性问题。</li>
+<li>无法通过系统工具自动更新或修复。</li>
+<li>部分绿色软件可能在关闭后无法完全清理自身造成的残留,导致注册表污染等.</li>
+</ul>
+<hr>
+<h2 id="单文件软件的原理"><a href="#单文件软件的原理" class="headerlink" title="单文件软件的原理"></a><strong>单文件软件的原理</strong></h2><p>单文件软件是便携式软件的一种极端形式，其所有功能和资源都被打包到一个可执行文件中，无需依赖外部文件。</p>
+<h3 id="工作机制：-2"><a href="#工作机制：-2" class="headerlink" title="工作机制："></a><strong>工作机制：</strong></h3><p><strong>内置资源打包：</strong><br>软件的所有依赖（如DLL、配置文件、资源文件）会被打包到一个单独的可执行文件中。运行时，这些资源会被解压到内存或临时目录。</p>
+<p><strong>虚拟文件系统：</strong><br>部分单文件软件通过内置的虚拟文件系统技术，直接在内存中解压并调用资源，而无需在硬盘上产生任何痕迹。</p>
+<p><strong>动态链接：</strong><br>在运行时，单文件软件会加载其打包的依赖库，确保程序功能的完整性。</p>
+<h3 id="优点：-3"><a href="#优点：-3" class="headerlink" title="优点："></a><strong>优点：</strong></h3><ul>
+<li>极高的便携性和独立性。</li>
+<li>无需解压或安装，即点即用。</li>
+</ul>
+<h3 id="缺点：-3"><a href="#缺点：-3" class="headerlink" title="缺点："></a><strong>缺点：</strong></h3><ul>
+<li>启动速度可能较慢（因需解压资源）。</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>软件类型</th>
+<th>是否需安装</th>
+<th>是否改动注册表</th>
+<th>资源存储</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装版</td>
+<td>是</td>
+<td>是</td>
+<td>系统和软件目录</td>
+<td>功能全面的软件，如Office、Adobe等</td>
+</tr>
+<tr>
+<td>便携版</td>
+<td>否</td>
+<td>否</td>
+<td>软件自身目录</td>
+<td>小工具、开发者工具</td>
+</tr>
+<tr>
+<td>绿色版</td>
+<td>否</td>
+<td>不一定</td>
+<td>软件自身目录</td>
+<td>大型软件的简化版本</td>
+</tr>
+<tr>
+<td>单文件版</td>
+<td>否</td>
+<td>否</td>
+<td>文件内</td>
+<td>极简工具、临时使用</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="选择软件的原则"><a href="#选择软件的原则" class="headerlink" title="选择软件的原则"></a>选择软件的原则</h2><p>以上的这些软件类型可以说各有优缺点.那么我们选择使用软件可以遵循的一般原则是什么?</p>
+<p>一般来说,不修改注册表要优于修改注册表.所以,我们的选择顺序应该为:</p>
+<p><strong>便携版软件&gt;单文件软件&gt;绿色版软件&gt;安装版软件</strong></p>
+<hr>
+<p>通过阅读本文,希望你可以对各种类型的软件运行方式有更加明了的认识.</p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

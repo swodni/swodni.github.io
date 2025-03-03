@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="在VMWare中初步安装Windows10系统"><a href="#在VMWare中初步安装Windows10系统" class="headerlink" title="在VMWare中初步安装Windows10系统"></a>在VMWare中初步安装Windows10系统</h1><hr>
+<p>  <strong>在本节中,我们使用VM初步安装一个Windows10虚拟机.</strong></p>
+<p>  <strong>为什么说是”初步”呢?因为本节的方法不涉及高级步骤(如使用PE系统等),主要目的让你熟悉首次安装系统的流程.高级方法安装系统会在未来介绍.</strong></p>
+<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p><strong>在VM中,点击 新建虚拟机</strong></p>
+<p><strong>操作方法:</strong></p>
+<pre><code>1.选择 典型 ,下一步
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09VM%E6%8C%89%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA1.png" alt="c32e6a3b657ccd7813668eef73b02f4d.png"></p>
+<pre><code>2.选择安装程序光盘映像文件,点击 浏览,选择你已经事先下载好的Windows10 ISO映像文件,下一步.
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09VM%E6%8C%89%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA2.png" alt="480c2f1705f7dcd0b4dd751798ea5780.png"></p>
+<pre><code>3.不填写Windows产品密钥
+  选择Windows10Pro版本(即专业版)
+  编一个账户名
+  密码设置随意
+  下一步
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09VM%E6%8C%89%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA3.png" alt="17a3fc7d91012d6d5356db59987062a4.png"></p>
+<p><strong>我没有Windows10产品密钥就是没有嘛!VM你不要多嘴 :)</strong></p>
+<pre><code>4.给你的虚拟机命名
+5.选择安装位置(建议选择非系统盘.一个Windows10大概有22GB)
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09VM%E6%8C%89%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA4.png" alt="dfa118e8e93205ef1ed451d26ab10e41.png"></p>
+<pre><code>6.指定磁盘容量页面是给虚拟机创建一个硬盘用于虚拟机内的存储.默认即可,如果你觉得60GB不够,可以增加.
+</code></pre>
+<blockquote>
+<p><strong>不用为了节省自己的空间而故意调小虚拟磁盘大小!在你的物理机里(物理机是你的真实电脑)VM创建的虚拟磁盘文件不会立刻占用你的磁盘60GB,而是你向虚拟机导入了多少文件,就占用你多大空间.所以,如果你在虚拟机内部的磁盘里使用了20GB,那么你的真实电脑的磁盘也只被消耗了20GB.</strong></p>
+<p><strong>但是,VM的虚拟磁盘文件却不会变小.所以如果你把虚拟机磁盘里的20GB文件删除了,你的真实磁盘仍然会被占用20GB.向虚拟机里导入数据需要慎重.一不小心,你的真磁盘就满了 :)</strong></p>
+</blockquote>
+<pre><code>7.一路确定,完成,开启虚拟机
+
+8.然后你就进入了漫长的等待......
+9.安装程序提示重启......
+</code></pre>
+<blockquote>
+<p><strong>你可以随意”残害”你的虚拟机系统,因为虚拟机和你的物理机”一点关系都没有”.无论你在虚拟机里运行什么病毒程序,你的物理机都不会受到丝毫影响.</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09%E5%AE%89%E8%A3%85%E9%87%8A%E6%94%BE%E6%96%87%E4%BB%B6.png" alt="36aa8d8f18145ecbca97dd9c0dce1254.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09%E9%87%8D%E5%90%AF.png" alt="a1b7c0d43438b71ba57d110b73b245c5.png"></p>
+<pre><code>10.重启电脑后,进入系统开箱阶段(OOBE阶段),系统开始Sysprep.
+11.建议断开虚拟机的网络连接.否则Windows10自动下载更新包等,占用空间,浪费时间.
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09%E5%BC%80%E6%9C%BA1.png" alt="2daa000c462a80301025b22a931e5f67.png"><br><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09%E5%BC%80%E6%9C%BA2.png" alt="f5bca34a3cd005403799cb2703076435.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/0809/09%E5%BC%80%E6%9C%BA3.gif" alt="bbad44a21699039a4cd09111c92b80aa.gif"></p>
+<blockquote>
+<p><strong>你可能几乎什么也没有点,就进入了虚拟机的桌面.真实情况下不是这样.这是因为VM这个软件自己帮你”操作”了所有的设置,自动帮你跳过了.</strong></p>
+<p><strong>想体验”真正”的安装过程,需要高级操作,在未来介绍.</strong></p>
+</blockquote>
+<h2 id="恭喜你安装了自己的第一台虚拟机"><a href="#恭喜你安装了自己的第一台虚拟机" class="headerlink" title="恭喜你安装了自己的第一台虚拟机!!! :)"></a>恭喜你安装了自己的第一台虚拟机!!! :)</h2></main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

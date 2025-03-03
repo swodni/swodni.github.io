@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="文件及文件系统简介"><a href="#文件及文件系统简介" class="headerlink" title="文件及文件系统简介"></a><strong>文件及文件系统简介</strong></h1><h2 id="1-文件"><a href="#1-文件" class="headerlink" title="1.文件"></a>1.<strong>文件</strong></h2><p><strong>文件(file)使我们日常操作电脑的主要对象.我们在电脑上所能看到的一切都是基于文件显示出来的.一个个文件其实是存储在硬盘上的一个个数据块,占据着硬盘的空间.文件的种类极其多样.日常用到的包括:</strong></p>
+<p><strong>.txt：文本文件</strong></p>
+<p><strong>.docx：Microsoft Word 文档</strong></p>
+<p><strong>.xlsx：Microsoft Excel 表格</strong></p>
+<p><strong>.pptx：Microsoft PowerPoint 演示文稿</strong></p>
+<p><strong>.pdf：Adobe PDF 文档</strong></p>
+<p><strong>.jpg 或 .jpeg：JPEG 图像文件</strong></p>
+<p><strong>.png：PNG 图像文件</strong></p>
+<p><strong>.mp3：音频文件</strong></p>
+<p><strong>.mp4：视频文件</strong></p>
+<p><strong>.zip：压缩文件</strong></p>
+<p><strong>.rar：RAR 压缩文件</strong></p>
+<p><strong>.exe：可执行程序</strong></p>
+<p><strong>.html：HTML 网页文件</strong></p>
+<p><strong>类似.txt .docx这样的东西叫做文件扩展名.他们一般跟在文件名之后,与文件名有一”点”之隔.你的电脑可能没有显示出这种文件扩展名,但我认为它们有必要被显示.如果你的电脑隐藏了他们:</strong></p>
+<p><strong>操作如下:</strong></p>
+<ol>
+<li><strong>打开文件资源管理器,点击 查看-&gt;文件扩展名</strong></li>
+</ol>
+<p><strong>这样你可以看见你的电脑里所有拥有扩展名的文件的扩展名.</strong></p>
+<p><strong>文件扩展名毕竟只是一个名字而已,所以他们在文件名字里作后缀并不是必须的.你可以试图在重命名文件的时候删除他的扩展名,系统提示 如果改变文件扩展名,会导致文件不可用 ,点击 确定,你会发现这个文件图标变成了一个”<em>小白本</em>“.这是由于这时候系统不知道他是什么类型的文件了,无法确定用什么软件来打开它,故不显示打开他的软件的图标.这时候想打开它就需要手动选择匹配的软件了.</strong></p>
+<h2 id="2-文件系统"><a href="#2-文件系统" class="headerlink" title="2.文件系统"></a>2.文件系统</h2><p>  <strong>文件系统是操作系统存储文件的架构.这是以分区为基础提出的概念.你可以通过以下方法快速的查看某个分区的文件系统:</strong></p>
+<p>  <strong>操作方法:</strong></p>
+<pre><code>1.在文件资源管理器中右键分区,点击 属性
+2.在 属性 界面中,可以看到当前分区的文件系统.
+</code></pre>
+<p> <img src="https://gitee.com/swodni/picture-bed/raw/master/0203/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9F%A5%E7%9C%8B.png" alt="9733e6ac3ff2fe95aa9f55d4306783fb.png"></p>
+<p>  <strong>各种各样的文件系统存在的目的都是<em>存储文件</em>.</strong></p>
+<p>  <strong>如果把磁盘比作一个地基,那么文件系统就是这个地基上的楼房框架,文件就是一个个房间里的住户.</strong></p>
+<p>  <strong>常见的文件系统种类包括:</strong></p>
+<pre><code>NTFS
+exFAT
+FAT32
+FAT16
+</code></pre>
+<p><strong>这四种文件系统类型是我们在操作时经常能够遇见的.</strong></p>
+<h3 id="NTFS"><a href="#NTFS" class="headerlink" title="NTFS"></a>NTFS</h3><p><strong>New Technology File System</strong>,<strong>微软公司开发的文件系统类型,windows10及更新的操作系统都必须安装在NTFS格式的分区中.</strong></p>
+<h3 id="exFAT"><a href="#exFAT" class="headerlink" title="exFAT"></a><strong>exFAT</strong></h3><p><strong>现今的大部分U盘,和部分移动硬盘使用的默认分区格式.能够存储单个大于4GB大小的文件.</strong></p>
+<h3 id="FAT32"><a href="#FAT32" class="headerlink" title="FAT32"></a><strong>FAT32</strong></h3><p><strong>古老的U盘大多数使用的文件系统类型.不能够存储单个大于4GB大小的文件.</strong></p>
+<h3 id="FAT16"><a href="#FAT16" class="headerlink" title="FAT16"></a><strong>FAT16</strong></h3><p><strong>极其不常用,可以被windows10和UEFI固件识别到.</strong></p>
+<p>  <strong>文件系统是可以更改的,但前提是必须将整个分区格式化.在之前提到的”格式化”操作中,可以选择其他类型的文件系统.</strong></p>
+<p>  <strong>不同的文件系统适合不同类型的磁盘(存储介质)和操作系统.只有正确选择了文件系统,磁盘和操作系统才能够最大程度的发挥其存储文件的潜能.</strong></p>
+<p>  <strong>一般来说,磁盘默认的文件系统就是它最佳的文件系统.</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

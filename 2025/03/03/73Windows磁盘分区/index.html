@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="Windows系统磁盘与分区知识详解"><a href="#Windows系统磁盘与分区知识详解" class="headerlink" title="Windows系统磁盘与分区知识详解"></a>Windows系统磁盘与分区知识详解</h1><p>在日常使用Windows操作系统的过程中,我们常常会接触到磁盘管理,磁盘分区等操作.然而,许多人可能并不完全理解磁盘和分区的运作原理以及如何高效管理它们.</p>
+<p>本篇文章将探讨Windows系统中关于磁盘和分区的各种知识,帮助大家更好地理解磁盘以及分区.</p>
+<hr>
+<h2 id="什么是磁盘"><a href="#什么是磁盘" class="headerlink" title="什么是磁盘?"></a>什么是磁盘?</h2><p>磁盘(Disk)是计算机存储数据的物理设备.在Windows操作系统中,磁盘通常指的是硬盘(HDD),固态硬盘(SSD)等存储介质.</p>
+<h3 id="硬盘-HDD-与固态硬盘-SSD-的区别"><a href="#硬盘-HDD-与固态硬盘-SSD-的区别" class="headerlink" title="硬盘(HDD)与固态硬盘(SSD)的区别"></a>硬盘(HDD)与固态硬盘(SSD)的区别</h3><ol>
+<li><strong>硬盘(HDD)</strong>:利用机械臂在盘片上读写数据,速度较慢,但价格相对便宜,容量较大.</li>
+<li><strong>固态硬盘(SSD)</strong>:采用闪存芯片存储数据,没有机械部件,读写速度远高于HDD,但价格较高.</li>
+</ol>
+<h3 id="Windows如何标注磁盘"><a href="#Windows如何标注磁盘" class="headerlink" title="Windows如何标注磁盘"></a>Windows如何标注磁盘</h3><p>每个磁盘都有一个<strong>磁盘编号</strong>,我们可以在系统工具”磁盘管理”里面查看.磁盘的编号一般从“磁盘 0”开始.</p>
+<p>计算机内置的磁盘一般都是”<strong>磁盘0</strong>“,后插入的磁盘或U盘以及虚拟光驱等等按照序号递增.</p>
+<hr>
+<h2 id="什么是分区"><a href="#什么是分区" class="headerlink" title="什么是分区?"></a>什么是分区?</h2><p>分区(Partition)是将一个物理磁盘划分为多个存储区域的过程.每个分区都可以作为一个独立的逻辑磁盘使用,系统可以对每个分区进行格式化,分配驱动器号,安装操作系统等操作.文件资源管理器里面显示的C:和D:等就是一个个分区.</p>
+<h3 id="分区的类型"><a href="#分区的类型" class="headerlink" title="分区的类型"></a>分区的类型</h3><ol>
+<li><strong>主分区(Primary Partition)</strong>:<ul>
+<li>主分区是可以被操作系统识别并直接启动的分区.</li>
+</ul>
+</li>
+<li><strong>扩展分区(Extended Partition)</strong>:<ul>
+<li>扩展分区本身不直接存储数据,而是包含一个或多个逻辑分区.</li>
+<li>扩展分区的存在解决了传统主分区数量的限制问题.</li>
+</ul>
+</li>
+<li><strong>逻辑分区(Logical Partition)</strong>:<ul>
+<li>逻辑分区是扩展分区中的一个一个的子分区.</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/68697071727374/73.png"></p>
+<h3 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h3><p>磁盘的分区结构由一个叫做<strong>分区表</strong>的区域管理.分区表保存着磁盘上所有分区的位置,大小以及类型等信息.</p>
+<p>分区表一般存储于磁盘的头部扇区(前几个扇区),可以使用16进制编辑器查看分区表数据.</p>
+<ol>
+<li><p><strong>MBR分区表:</strong><br>传统的分区表格式,支持最大2TB的磁盘,最多支持四个主分区(可以自己分出扩展分区和逻辑分区,所以也可以支持更多分区).适用于<strong>旧版的磁盘和系统.(通常Windows 7 及以下)</strong></p>
+</li>
+<li><p><strong>GPT分区表</strong>:<br><strong>新一代</strong>分区表格式,支持更大的磁盘(最大18EB),并且支持更多分区.GPT是基于UEFI启动的标准,已经成为现代操作系统的默认分区方式.(事实上,UEFI同样支持使用MBR分区表的磁盘.)</p>
+<p>GPT分区表磁盘的分区全都是主分区.</p>
+</li>
+</ol>
+<blockquote>
+<p>请注意,<strong>MBR分区表</strong>,和<strong>MBR主引导记录</strong>是两个不同的概念,很多人把他们混淆.</p>
+<p>分区表是记录分区情况的一段数据,而<strong>MBR主引导记录</strong>是一段存在于磁盘头部扇区的<strong>一段代码</strong>(同样是二进制代码).</p>
+<p>这段代码在开机的时候被主板的BIOS读取,负责<strong>引导操作系统启动</strong>的关键一步.</p>
+</blockquote>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>文件系统是<strong>管理数据存储的方式</strong>,规定了如何在磁盘上组织,存取和管理数据.文件系统的类型多种多样,Windows中,文件系统类型常见的有:</p>
+<ul>
+<li>NTFS:微软发明的文件系统类型.<strong>Windows系统必须安装在NTFS文件系统中才能运行</strong>.通常情况下,硬盘使用这类文件系统.</li>
+<li>FAT32:比较古老的文件系统.<strong>最适合现在的UEFI固件读取</strong>.缺陷是无法存储单个大小大于4GB的文件.老旧的U盘大多使用FAT32文件系统类型.</li>
+<li>FAT16:比FAT32还要古老.现在已经不常用,UEFI固件可以读取.</li>
+<li>exFAT:又名FAT64.是现在大多数闪存<strong>U盘选择的文件系统类型</strong>.单个文件大小不受4GB限制.</li>
+<li>UDF:光盘文件系统.也是虚拟光驱的文件系统.</li>
+</ul>
+<p><strong>如果说,硬盘是地基,那么文件系统就是地基上面的楼房框架,文件是每个房间里面的住户,文件的路径地址就是门牌号.</strong></p>
+<p><strong>楼房的框架决定了文件以何种形式住在这栋楼房里.</strong></p>
+<h3 id="分区的参数"><a href="#分区的参数" class="headerlink" title="分区的参数"></a>分区的参数</h3><p>有的时候,在<code>磁盘管理</code>里面可以看见一个磁盘的不同分区上面的标注不同,比如:EFI系统分区,启动,页面文件故障转储,wim引导,主分区,支持wim等等.这些属于分区参数.</p>
+<p>我们可以使用diskpart工具或者DiskGenius软件更改分区的部分参数,使不可读取不可挂载的分区可以读取挂载,以便进行系统维护.</p>
+<h3 id="隐藏分区"><a href="#隐藏分区" class="headerlink" title="隐藏分区"></a>隐藏分区</h3><p>有时候,我们在<code>磁盘管理</code>里面可以看见一个磁盘里包含好多分区,但是文件资源管理器里面只显示其中的几个分区.</p>
+<p>这是因为没被显示的分区隐藏了.隐藏分区和非隐藏分区的区别是:隐藏分区没有盘符,正常显示的分区有盘符.(盘符就是C盘D盘E盘的C,D,E字母)</p>
+<p>使用磁盘管理,我们可以给部分的隐藏分区分配盘符,好让他们显示在文件资源管理器中,供我们读取文件.</p>
+<ul>
+<li>打开磁盘管理,右键隐藏的分区</li>
+<li>点击”更改驱动器号和路径”</li>
+<li>点击<code>添加</code></li>
+<li>选择一个喜欢的盘符,确定</li>
+</ul>
+<p>有时,我们会发现”更改驱动器号和路径”等选项是灰色的,无法点击.这是由于分区参数规定了这个分区不能进行这些操作.比如,EFI系统分区无法在磁盘管理里面分配盘符.</p>
+<p>使用第三方磁盘分区管理工具,可以突破这一限制,随意分配盘符.</p>
+<hr>
+<h2 id="Windows中的磁盘管理工具"><a href="#Windows中的磁盘管理工具" class="headerlink" title="Windows中的磁盘管理工具"></a>Windows中的磁盘管理工具</h2><p>Windows提供了几个工具来帮助用户管理磁盘和分区:</p>
+<ol>
+<li><p><strong>磁盘管理</strong>:</p>
+<ul>
+<li>通过右键点击“开始”菜单选择“磁盘管理”,进入“磁盘管理”界面.</li>
+<li>这个工具可以用来查看磁盘信息,创建,删除和调整分区大小,格式化分区等.</li>
+<li>然而,这个工具的功能十分基础.优秀的第三方图形化磁盘管理工具有<strong>DiskGenius</strong>(DG),傲梅分区助手等.</li>
+</ul>
+</li>
+<li><p><strong>磁盘清理</strong>:</p>
+<ul>
+<li>用于清理磁盘上的临时文件,系统文件和其他无用的文件,释放磁盘空间.</li>
+<li>对于Windows 10,在文件资源管理器中右键分区,点击<code>属性</code>,即可看见”磁盘清理”按钮.</li>
+</ul>
+</li>
+<li><p><strong>磁盘优化</strong>:</p>
+<ul>
+<li>对于机械硬盘,Windows会自动进行碎片整理,而对于固态硬盘,则会进行TRIM操作,保持性能.</li>
+</ul>
+</li>
+<li><p><strong>命令行工具</strong>:</p>
+<ul>
+<li><code>diskpart</code>:这是一个强大的命令行工具,可以执行更复杂的磁盘管理操作,如分区,格式化,变更分区类型等.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="磁盘与分区的常见操作"><a href="#磁盘与分区的常见操作" class="headerlink" title="磁盘与分区的常见操作"></a>磁盘与分区的常见操作</h2><h3 id="1-创建分区"><a href="#1-创建分区" class="headerlink" title="1. 创建分区"></a>1. 创建分区</h3><p>在<code>磁盘管理</code>中,右键点击未分配的空间,选择“新建简单卷”,按照向导完成分区的创建.一般情况下,可以一路下一步.</p>
+<h3 id="2-调整分区大小"><a href="#2-调整分区大小" class="headerlink" title="2. 调整分区大小"></a>2. 调整分区大小</h3><p><code>磁盘管理</code>允许用户通过“磁盘管理”来调整分区的大小.通过缩小某个分区的空间,再扩展另一个分区来重新分配存储空间.</p>
+<blockquote>
+<p>然而,磁盘管理无法把空闲的空间分配给他后部的分区,只能把空闲空间分配给紧邻它的前面的分区.</p>
+<p>使用第三方工具(如DiskGenius),可以对分区的大小和分配以及分区表进行任意的操作.</p>
+</blockquote>
+<h3 id="3-格式化分区"><a href="#3-格式化分区" class="headerlink" title="3. 格式化分区"></a>3. 格式化分区</h3><p>格式化分区会**清除分区上的所有数据.**一般情况下,我们可以在文件资源管理器里面右键分区,格式化.<strong>格式化分区的时候可以改变分区的文件系统.</strong></p>
+<blockquote>
+<p>数据无价,请谨慎操作!</p>
+</blockquote>
+<h3 id="4-合并分区"><a href="#4-合并分区" class="headerlink" title="4. 合并分区"></a>4. 合并分区</h3><p>Windows 10及更高版本的磁盘管理工具,允许用户通过删除一个分区来合并空闲空间至相邻的分区.然而,合并分区前需要备份数据,因为<strong>删除分区会清除该分区上的所有数据</strong>.</p>
+<h3 id="5-转换磁盘类型-MBR分区表与GPT分区表"><a href="#5-转换磁盘类型-MBR分区表与GPT分区表" class="headerlink" title="5. 转换磁盘类型(MBR分区表与GPT分区表)"></a>5. 转换磁盘类型(MBR分区表与GPT分区表)</h3><p>可以通过<code>diskpart</code>命令或Windows磁盘管理工具将<strong>安装了系统的</strong>MBR磁盘转换为GPT磁盘,反之亦然.但要注意,转换会清除磁盘上的所有数据.</p>
+<p>由于diskpart<strong>对普通用户不友好</strong>,使用第三方软件进行图形用户界面操作是更好的选择.</p>
+<hr>
+<h2 id="如何选择合适的磁盘格式和分区类型"><a href="#如何选择合适的磁盘格式和分区类型" class="headerlink" title="如何选择合适的磁盘格式和分区类型?"></a>如何选择合适的磁盘格式和分区类型?</h2><ol>
+<li><p><strong>磁盘大小</strong>:</p>
+<ul>
+<li>如果磁盘大小超过2TB,推荐使用GPT格式分区表.MBR分区表只支持2TB以下的磁盘.</li>
+</ul>
+</li>
+<li><p><strong>操作系统兼容性</strong>:</p>
+<ul>
+<li>Windows 10&#x2F;11默认使用GPT和UEFI启动.如果你的计算机较老,可能需要选择MBR和传统的BIOS启动方式.</li>
+</ul>
+</li>
+<li><p><strong>存储需求</strong>:</p>
+<ul>
+<li>如果需要更多的分区,GPT格式支持更多的分区(最多128个),而MBR仅支持4个主分区(你也可以选择使用逻辑分区).</li>
+</ul>
+</li>
+<li><p><strong>数据安全性</strong>:</p>
+<ul>
+<li>GPT格式可以为每个分区<strong>保存冗余的分区表</strong>,有助于防止分区表损坏带来的数据丢失.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Windows系统可以安装在什么类型的分区中"><a href="#Windows系统可以安装在什么类型的分区中" class="headerlink" title="Windows系统可以安装在什么类型的分区中?"></a>Windows系统可以安装在什么类型的分区中?</h2><p>Windows系统必须安装在NTFS文件系统的分区中.</p>
+<p>Windows系统可以安装并运行在GPT分区表磁盘的任意大小足够的NTFS分区中.</p>
+<p>Windows系统可以安装并运行在MBR分区表磁盘的任意大小足够的NTFS主分区或逻辑分区中.</p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

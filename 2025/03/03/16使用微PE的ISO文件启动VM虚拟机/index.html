@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="使用微PE的ISO文件启动VM虚拟机"><a href="#使用微PE的ISO文件启动VM虚拟机" class="headerlink" title="使用微PE的ISO文件启动VM虚拟机"></a>使用微PE的ISO文件启动VM虚拟机</h1><p>  <strong>我们使用U盘启动PE系统的操作步骤繁琐复杂,涉及添加虚拟磁盘和磁盘脱机.现在,使用微PE的ISO光盘镜像文件即可直接启动VM虚拟机进入微PE.</strong></p>
+<p>  <strong>首先需要获得微PE的ISO镜像.</strong></p>
+<p><strong>操作方法:</strong></p>
+<pre><code>1.打开 微PE工具箱
+2.点击右下角的光盘图标,生成可启动的ISO.
+3.选择ISO的存储位置,自己喜欢的壁纸图片,包含DOS工具箱,不要选择 同时复制安装包,这很占空间.
+4.立即生成ISO
+</code></pre>
+<p>  <strong>你将会得到微PE的ISO可启动镜像文件.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/13141516/16%E5%BE%AEpeISO.png" alt="ac93516299de48405303270e86e73c65.png"></p>
+<h3 id="使用ISO启动虚拟机"><a href="#使用ISO启动虚拟机" class="headerlink" title="使用ISO启动虚拟机"></a>使用ISO启动虚拟机</h3><p>  <strong>其实这一步骤的操作就是为虚拟机添加一个虚拟光盘,选择ISO镜像文件的时候选择微pe的ISO就可以了.</strong></p>
+<p><strong>操作方法:</strong></p>
+<pre><code>1.编辑虚拟机设置-&gt;添加-&gt;CD/DVD驱动器,下一步
+2.选择 启动时连接,使用ISO映像文件,选择微pe的ISO文件.
+</code></pre>
+<p>  <strong>微peISO添加成功.</strong></p>
+<p>  <strong>最好保证你的虚拟机只有一个虚拟光盘.因为若有多个,在启动界面可能不知道选择哪个.</strong></p>
+<pre><code>1.启动虚拟机的启动模式选择 打开电源时进入固件
+2.选择包含CDROM Drive的选项,回车
+(若有多个CDROM,你可以依次尝试,或者根据添加虚拟光盘的顺序选择)
+</code></pre>
+<p>  <strong>别忘了选择1024x768哦.</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

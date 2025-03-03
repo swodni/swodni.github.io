@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="超长文预警-小白必看-Windows系统引导和启动详细介绍与运维实操全面讲解"><a href="#超长文预警-小白必看-Windows系统引导和启动详细介绍与运维实操全面讲解" class="headerlink" title="[超长文预警]小白必看:Windows系统引导和启动详细介绍与运维实操全面讲解"></a>[超长文预警]小白必看:Windows系统引导和启动详细介绍与运维实操全面讲解</h1><p>在Windows系统启动的过程中,有一个关键的文件起到了引导Windows的指导性作用,这个文件就是BCD文件,全名boot configration data(启动配置数据).</p>
+<p>一旦这个BCD文件稍有配置错误,我们就无法正常启动Windows系统随之而来的是一个报错的蓝屏或者黑屏界面.</p>
+<p>所以,懂得如何修复BCD文件是一个很重要的技术,这不仅可以加深我们对Windows系统启动的理解,还能在关键的时候解决我们的电脑问题.</p>
+<p>有人说,我们可以直接使用引导修复工具修复引导,修复BCD,并没有必要学习如何手动编辑修复它.</p>
+<p>事实上,任何引导修复工具都不是万能的.<strong>我并不是说他会修复失败,我是想说,BCD引导需要合理的结合软件和硬件的配置,综合多方面考虑.</strong></p>
+<p>给大家举一个例子.</p>
+<blockquote>
+<p><strong>在一个UEFI的固件上,我想修复一个MBR分区表磁盘上的Windows系统引导(BCD).如果我们使用普通的引导修复工具(如Dism++),那么他大概率会修复一个适合BIOS固件的引导.</strong></p>
+<p><strong>然而,我们的固件是UEFI的,并不是BIOS的.</strong></p>
+<p><strong>因为Dism++只知道一般的引导修复模式,只知道MBR分区表磁盘配合BIOS固件,不知道UEFI固件也可以使用MBR分区表.</strong></p>
+</blockquote>
+<p>这只是一个小小的例子,我们要想让计算机的启动模式更符合我们的使用习惯,就需要详细的配置BCD启动菜单,详细配置的前提就是学习.</p>
+<p><strong>在本文的最后部分,我会讲解修复各种固件的引导的一般方法.</strong></p>
+<h3 id="研究原理是一切学习的目的-是一切正确操作的源头"><a href="#研究原理是一切学习的目的-是一切正确操作的源头" class="headerlink" title="研究原理是一切学习的目的,是一切正确操作的源头."></a>研究原理是一切学习的目的,是一切正确操作的源头.</h3><hr>
+<h4 id="通过今天这篇文章-我将详细而又通俗的介绍-Windows-系统到底是如何启动的-如何引导的"><a href="#通过今天这篇文章-我将详细而又通俗的介绍-Windows-系统到底是如何启动的-如何引导的" class="headerlink" title="通过今天这篇文章,我将详细而又通俗的介绍 Windows 系统到底是如何启动的,如何引导的."></a>通过今天这篇文章,我将详细而又通俗的介绍 Windows 系统到底是如何启动的,如何引导的.</h4><h4 id="如果你愿意学习-请紧跟我的思路-把Windows引导吃透搞懂"><a href="#如果你愿意学习-请紧跟我的思路-把Windows引导吃透搞懂" class="headerlink" title="如果你愿意学习,请紧跟我的思路,把Windows引导吃透搞懂."></a>如果你愿意学习,请紧跟我的思路,把Windows引导吃透搞懂.</h4><h4 id="如有疑问-可以进我的微信群提问"><a href="#如有疑问-可以进我的微信群提问" class="headerlink" title="如有疑问,可以进我的微信群提问."></a><strong>如有疑问,可以进我的微信群提问.</strong></h4><hr>
+<h2 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始."></a>正文开始.</h2><hr>
+<p>我们从按下电源按钮说起.</p>
+<h3 id="主板加电"><a href="#主板加电" class="headerlink" title="主板加电"></a>主板加电</h3><p>按下电源按钮的那一刻,电脑里面有一块叫”主板”的电路板就开始通电了.</p>
+<p>主板通电后,进行的下一步便是加载<strong>固件</strong>.</p>
+<hr>
+<h4 id="何为固件"><a href="#何为固件" class="headerlink" title="何为固件?"></a>何为固件?</h4><p>“固件”一词,乍一看起来好像是一个物理实体,一个固体一样.</p>
+<p><strong>※<strong>然而,事实上,<strong>固件是</strong>一个微型系统,一个软件,一段</strong>存储在主板NVRAM里的代码.</strong></p>
+<blockquote>
+<p>NVRAM是<strong>非易失性随机存储介质</strong>的英文简写.</p>
+<p><strong>通俗的说</strong>,NVRAM是在主板上一个可以存储数据的一个小小的模块.即使在没有电的情况下,NVRAM里面的数据也不会丢失,类似U盘一样.</p>
+<p>而RAM是<strong>易失性随机存储介质</strong>,也就是我们常说的<strong>内存</strong>.</p>
+<p>内存的特点就是没有电的情况下,无法保存任何数据.</p>
+<p><strong>所以我们关机重启后,电脑在上次开机运行时的状态都不会被保留下来.</strong></p>
+</blockquote>
+<h4 id="固件的分类"><a href="#固件的分类" class="headerlink" title="固件的分类?"></a>固件的分类?</h4><p><strong>目前,固件分两种:BIOS和UEFI.</strong></p>
+<ul>
+<li>BIOS<ul>
+<li>老式的计算机使用的固件.一般来说,在2015年以前的计算机使用BIOS,或BIOS和UEFI两种固件都具备.</li>
+</ul>
+</li>
+<li>UEFI<ul>
+<li>现在绝大多数计算机使用的固件,一般都兼容BIOS,也就是向后兼容.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>有关BIOS和UEFI固件之间的优势和劣势我不在这里详细讲解.大家可以自行搜索.</p>
+<p>我只在必要时介绍他们的区别和优劣.</p>
+</blockquote>
+<p><strong>计算机使用的固件不同,他们的启动模式就不同.引导方式自然也不同.</strong></p>
+<hr>
+<h3 id="固件自检"><a href="#固件自检" class="headerlink" title="固件自检"></a>固件自检</h3><p>主板加电之后加载固件,固件被加载到内存里后,便开始运行.<strong>主板把整个计算机的控制权交给了固件.</strong></p>
+<p>两个固件都要先审视一下自己所在的硬件环境是否可以运行,这叫做<strong>自检.</strong></p>
+<p>这是一个很快的过程,如果这个过程失败,那么电脑启动就会卡在第一步:<strong>电脑的硬件有故障.</strong></p>
+<p>一般都是重要的硬件故障,比如CPU,风扇,内存,显示器等发生故障.我们在这里不讨论这些硬件故障.继续启动电脑.</p>
+<p><strong>从这之后,UEFI和BIOS的启动方式就分道扬镳了</strong>.</p>
+<p>我们首先介绍UEFI的启动方式,然后介绍BIOS的启动方式.</p>
+<hr>
+<h3 id="UEFI-固件启动-Windows-系统"><a href="#UEFI-固件启动-Windows-系统" class="headerlink" title="UEFI 固件启动 Windows 系统"></a>UEFI 固件启动 Windows 系统</h3><p>一般情况下,我们的Windows系统都安装在电脑里面的<strong>磁盘</strong>中.所以,想要启动Windows系统,<strong>UEFI固件首先就要识别到电脑里面的磁盘.</strong></p>
+<p>正常情况下,UEFI固件识别磁盘是一个很简单的事情,<strong>不需要我们做什么.</strong></p>
+<p>**UEFI固件可以识别MBR,GPT两种类型的磁盘分区表.**我们只需要保证磁盘正确连接在电脑里面(主板或USB接口上)就可以了.</p>
+<p>识别完磁盘之后,UEFI固件就要对磁盘”下功夫”.他进行的下一步便是<strong>扫描磁盘的分区</strong>.</p>
+<blockquote>
+<p>我们知道,磁盘上的空间可以被划分为很多分区.例如,C盘,D盘就可以是同一块磁盘的不同分区.</p>
+<p>分区的基本参数是<strong>文件系统</strong>,Windows系统只能安装在<strong>NTFS文件系统</strong>的分区里面.当我们右键一个分区查看属性的时候,就可以看见他的文件系统了.</p>
+</blockquote>
+<p>然而,UEFI固件是一个”傻子”.UEFI固件只能识别一些比较老式的文件系统类型,比如**:FAT32,FAT16,FAT.**</p>
+<p>也就是说,纵使我们的磁盘上有好多分区,UEFI固件也只能识别出FAT32,FAT16和FAT文件系统的分区.</p>
+<p><strong>识别到这些分区之后,UEFI固件就可以读取这个分区里面的文件了.</strong></p>
+<p><strong>※<strong>在Windows系统的计算机中,磁盘上面有一个十分重要的分区,名字叫做</strong>EFI分区.(或者ESP分区)</strong></p>
+<hr>
+<h4 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a><strong>EFI分区</strong></h4><p>从名字可以看出,这个分区就是专门给UEFI分区用的.<strong>UEFI固件正是通过读取EFI分区里的文件并运行里面的程序来启动Windows的.</strong></p>
+<p>所以,理所当然的,EFI分区的文件系统类型是FAT32**(或FAT16,本文为了方便,都使用FAT32为标准EFI分区文件系统)**.</p>
+<blockquote>
+<p>EFI分区的本质就是一个文件系统为FAT32的分区.</p>
+<p>所以,任何以FAT32为文件系统的分区都可以被视为EFI分区,被UEFI固件识别读取.</p>
+</blockquote>
+<p>那么,EFI分区里面都有什么?他为什么要作为一个专门的分区供UEFI固件使用?他为什么在Windows系统启动的过程中如此重要?</p>
+<p><strong>因为EFI分区里面有Windows系统的引导文件.</strong></p>
+<p>笔者给出自己电脑的EFI分区的<strong>文件结构目录</strong>(不在讲解范围内的文件省略):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">EFI</span><br><span class="line">    ├─Boot</span><br><span class="line">    │      bootx64.efi</span><br><span class="line">    │</span><br><span class="line">    └─Microsoft</span><br><span class="line">        ├─Boot</span><br><span class="line">        │  │  BCD</span><br><span class="line">        │  │  bootmgfw.efi</span><br><span class="line">        │  │ memtest.efi</span><br><span class="line">        │  │  ...........一堆文件............</span><br><span class="line">        │  │</span><br><span class="line">        │  ├─zh-CN</span><br><span class="line">        │  │      bootmgfw.efi.mui</span><br><span class="line">        │  │      bootmgr.efi.mui</span><br><span class="line">        │  │.......一堆国家的语言文件.........</span><br><span class="line">        │  │</span><br><span class="line">        │  ├─Fonts</span><br><span class="line">        │  │      chs_boot.ttf</span><br><span class="line">        │  │      cht_boot.ttf</span><br><span class="line">        │  │..........一堆字体文件...........</span><br><span class="line">        │  │</span><br><span class="line">        └─Recovery</span><br><span class="line">                BCD</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下面,我将介绍一种”应用程序”:<strong>efi程序.</strong></p>
+<hr>
+<h4 id="efi程序"><a href="#efi程序" class="headerlink" title="*.efi程序"></a>*.efi程序</h4><p>和Windows系统里的exe软件一样,**efi程序就是在UEFI固件这个小型系统里的运行程序软件.**在上面的EFI分区文件目录里面,我们可以看见很多以efi为后缀名的文件,他们都是efi程序,<strong>只能在UEFI固件中运行.</strong></p>
+<p>例如: **bootx64.efi,bootmgfw.efi,memtest.efi **等等.UEFI固件通过运行它们,进一步启动Windows系统,或者进行基本的计算机操作维护.</p>
+<p>对于Windows系统来说,<strong>bootx64.efi,bootmgfw.efi</strong>这两个程序都是启动Windows的关键.(每一个都可以独立启动Windows)那么至于为什么有两个启动Windows的efi程序,我们一会再说明.</p>
+<hr>
+<h4 id="UEFI固件怎么知道自己要干什么"><a href="#UEFI固件怎么知道自己要干什么" class="headerlink" title="UEFI固件怎么知道自己要干什么?"></a>UEFI固件怎么知道自己要干什么?</h4><p><strong>问题来了:UEFI固件读取扫描到了EFI分区,也能访问EFI分区里的文件,但是,UEFI固件怎么知道要自己运行bootmgfw.efi或者bootx64.efi的?</strong></p>
+<blockquote>
+<p><strong>这还是NVRAM的功劳.</strong></p>
+</blockquote>
+<p><strong>NVRAM里面除了有UEFI固件整体代码,还记录了UEFI固件应该运行的efi程序所在的EFI分区是哪一个分区,以及efi程序所在位置的详细信息.</strong></p>
+<p><strong>UEFI固件正是读取了这个记录,才能运行相应的efi程序,进行下一步操作.</strong></p>
+<blockquote>
+<p>不同分区都有自己独一无二的”身份证号”,即使两个分区的各个特征都一样(比如大小,文件系统类型…)它们的身份证号也不同.</p>
+<p>这个身份证号的名字在计算机中叫做<strong>GUID</strong>.GUID是一长串**数字和字母的组合,**是随机生成的,也是唯一的.</p>
+<p>事实上,NVRAM里记录的就是这个EFI分区的GUID,UEFI也是通过这个GUID找到正确的EFI分区.</p>
+<p>我们也可以给身边的任何一个事物一个GUID号,比如,一盆向日葵.</p>
+</blockquote>
+<p>一般来说,NVRAM里面不只记录了一个启动项目,而是记录很多的指向efi程序的启动项目.</p>
+<p>但是通常情况下,这些项目并不是都有效的.UEFI固件会按照顺序从上到下依次尝试启动项目,并运行第一个尝试成功的efi程序.</p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93UEFI.png" alt="93uefi"></p>
+<p>例如,上图就是一个UEFI的启动菜单选择界面.我们可以通过开机的时候<strong>按下键盘上的开机热键</strong>的方式把开机过程”截住”,然后进入这个菜单页面.(不同品牌电脑开机热键不同,可以百度搜索)</p>
+<p>我们可以看到,从<code>Windows boot manager</code>开始,到<code>EFI VMWare Virtual NVME Namespace (NSID 2)</code>, 这些都是UEFI的启动项目.它们都记录在主板的NVRAM里面.</p>
+<p>UEFI从上到下依次尝试启动,寻找并运行它们所指向的efi程序.</p>
+<hr>
+<h4 id="bootx64-efi-bootmgfw-efi都做了些什么"><a href="#bootx64-efi-bootmgfw-efi都做了些什么" class="headerlink" title="bootx64.efi,bootmgfw.efi都做了些什么?"></a>bootx64.efi,bootmgfw.efi都做了些什么?</h4><p>了解并且运行了efi程序之后,我们将介绍这两个efi程序究竟做了什么操作,启动了Windows系统.</p>
+<p>首先,大家可以放心的是:bootx64.efi,bootmgfw.efi这两个程序只是名字不同而已,他们的文件本质是一样的,<strong>是两个一模一样的程序</strong>.所以,它们的运行<strong>原理是一致的.</strong></p>
+<blockquote>
+<p><strong>至于为什么会有两个一样的efi程序,但名字还不一样,我会在之后讲解.</strong></p>
+</blockquote>
+<p><strong>bootmgfw.efi</strong>,是Windows启动管理器.</p>
+<p><strong>你可能见过这两个界面:</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93%E8%80%81%E5%BC%8F.png" alt="93老式"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93metro.png" alt="93metro"></p>
+<p>这两个界面都是Windows启动管理器的界面,也就是说,他们都是bootmgfw.efi的界面.</p>
+<blockquote>
+<p><strong>为什么是两种界面?</strong></p>
+<p>因为微软自Windows 8 开始引入了磁贴风格扁平化设计,便于触摸设备使用.</p>
+<p>黑色的便是老式的Windows启动管理器界面,蓝色的是Windows 8 之后引入的metro界面,比较现代.</p>
+<p><strong>它们的本质是相同的</strong>,只不过蓝色的界面更美观一些.然而,新式的界面在有多系统的电脑上可能会拖延启动时间.</p>
+<p>我们可以手动配置BCD文件,来选择使用这两种界面的任意一种.</p>
+<p>关于如何配置BCD文件,我将在之后讲解.</p>
+</blockquote>
+<p>bootmgfw.efi这个Windows启动管理器列出了操作系统的启动菜单供我们选择.</p>
+<p>比如,上图中就有win1,win2,win3,PE1,PE2这些系统可以启动.</p>
+<p><strong>那么,下一个问题就是:这些可以启动的系统的列表是从哪里来的?</strong></p>
+<hr>
+<h4 id="BCD文件"><a href="#BCD文件" class="headerlink" title="BCD文件"></a>BCD文件</h4><p>没错,BCD文件里面记录了这个系统列表.</p>
+<p>BCD文件是什么?</p>
+<blockquote>
+<p><strong>BCD文件(boot configuration data),启动配置数据.</strong></p>
+<p>BCD文件里记录了操作系统的启动信息,包括系统位置,启动模式,启动程序,系统菜单名称等等.可以说是Windows系统启动的字典索引.</p>
+<p>BCD文件只适用于Windows系统.</p>
+</blockquote>
+<p><strong>BCD文件就像是NVRAM里面的启动顺序记录一样,都是记录菜单.只不过NVRAM启动顺序是给UEFI用的,BCD是给bootmgfw.efi用的.</strong></p>
+<p>BCD文件位于和bootmgfw.efi相同的文件夹里.<strong>一般情况下,EFI分区里的文件的位置都不可以改变,如果改变就可能发生UEFI固件和efi程序找不到文件的情况,导致启动失败.</strong></p>
+<blockquote>
+<p>具体详细内容可以阅读我的第60篇文章《对UEFI引导的深入探究:efi引导程序的位置一定是死的吗?》</p>
+</blockquote>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93BCD%E4%BD%8D%E7%BD%AE.png" alt="93bcd位置"></p>
+<p><strong>学会如何编辑BCD,是系统运维迈向高阶的关键一步.</strong></p>
+<hr>
+<h4 id="编辑BCD"><a href="#编辑BCD" class="headerlink" title="编辑BCD"></a><strong>编辑BCD</strong></h4><p>我们无法使用普通的文本编辑器编辑BCD,因为里面的数据是加密的.我们可以使用第三方图形界面工具编辑BCD,也可以使用微软提供的命令行工具<strong>bcdedit</strong>编辑BCD.</p>
+<p>由于命令行工具使用不方便,不适合入门,笔者介绍使用第三方优秀小工具<strong>BOOTICE</strong>这款软件编辑BCD菜单.有兴趣的同学可以学习一下命令行工具的编辑方法.</p>
+<blockquote>
+<p>BOOTICE软件可以在各大平台下载.笔者提供一个下载链接,方便下载:</p>
+<p><code>https://wwkd.lanzn.com/ijYzt2iud92f</code></p>
+</blockquote>
+<p>打开BOOTICE,我们点击上方<code>&quot;BCD编辑&quot;-&gt;选择当前系统BCD-&gt;智能编辑模式</code>即可编辑我们自己电脑的BCD.</p>
+<blockquote>
+<p>BCD是重要的启动配置数据,请谨慎操作,错误操作可导致无法启动系统.</p>
+<p>建议在虚拟机中编辑BCD练习.</p>
+</blockquote>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93bootice.png" alt="93bootice"></p>
+<p>这个界面大体分两部分:左半栏,右半栏.左半栏的上部显示的是在Windows启动管理器(bootmgfw.efi)界面显示的操作系统启动菜单的样子.其余部分都是BCD的编辑选项.</p>
+<p><strong>我将进行详细介绍.</strong></p>
+<ul>
+<li>“上移,下移,默认,添加,删除”:对某一个启动项目在菜单中的位置上移,下移,设置为默认启动项目,添加新的启动项目,删除某一个启动项目.</li>
+<li>全局设置<ul>
+<li>超时时间:在有多个启动项目时,设置等待时间,到了这个时间之后自动启动被设置为默认的启动项目.</li>
+<li>启动界面语言:选择Windows启动管理器界面的语言.是否生效还需要搭配EFI分区中语言文件夹中的语言文件.</li>
+<li>显示菜单:若勾选,无论是否有多个启动项目,都在启动的时候显示Windows启动管理器菜单.</li>
+<li>禁用数字签名验证:禁用启动程序的数字签名验证.</li>
+</ul>
+</li>
+<li>启动设备<ul>
+<li>设备类型:启动的系统的启动类型.<strong>正常的Windows系统是以分区方式启动的.</strong>(也就是Windows系统安装在分区里面).Ramdisk和VHD分别为另外两种启动类型,会在未来介绍.</li>
+<li><strong>启动磁盘:安装的Windows系统所在的磁盘.</strong></li>
+<li><strong>启动分区:Windows系统所在的分区.(也就是我们常常说的C盘)</strong></li>
+<li>设备文件,SDI文件是Ramdisk和VHD需要的依赖文件,不是正常Windows系统启动所需,将在未来介绍.</li>
+</ul>
+</li>
+<li>设置<ul>
+<li>GUID:该启动项的”身份证”(全局唯一标识符)不可更改.</li>
+<li>菜单标题:显示在Windows启动管理器的菜单名字,作用是让我们分辨哪个菜单对应哪个系统.我们可以随意对其进行命名.(不建议使用中文)</li>
+<li>启动文件:用于启动Windows系统运行的第一个程序.对于UEFI固件的计算机,这个程序都是位于系统盘的<code>\Windows\system32\winload.efi</code>.</li>
+<li>系统路径:<code>\Windows</code>这个也是不变的.</li>
+<li>系统语言:系统语言.</li>
+</ul>
+</li>
+<li>safeboot:安全启动,一般是normal mode,正常模式</li>
+<li>PAE:开启这个功能可以使32位的CPU访问超过4GB大小的内存.</li>
+<li>NX:阻止恶意代码加载的技术.</li>
+<li>检测硬件抽象层:检测操作系统与硬件之间的抽象层面是否正常.</li>
+<li><strong>启动到winPE:如果这个启动项启动PE系统,则需要勾选他.</strong></li>
+<li><strong>启用 win 8 metro 界面:勾选后,bootmgfw.efi将显示蓝色磁贴风格的Windows启动管理器界面.不勾选则使用黑色背景界面.</strong></li>
+<li>测试模式:笔者不知道.目前来看,作用不是很大.不介绍.</li>
+<li>保存当前系统设置:保存某一个启动项的设置.</li>
+<li>保存全局设置:保存整个BCD文件.</li>
+</ul>
+<p><strong>以上是bootice编辑BCD界面所有按钮功能的介绍.</strong></p>
+<p><strong>介绍完功能,如何编辑BCD就显而易见了.我在此强调几点经验.</strong></p>
+<ul>
+<li>新建BCD菜单,对于Windows 7&#x2F;8&#x2F;8.1&#x2F;10&#x2F;11系统,点击<code>添加-&gt;新建win7/8/8.1启动项</code></li>
+<li>常规安装的Windows系统,设备类型是<code>分区</code></li>
+<li><strong>启动磁盘选择Windows系统所在的磁盘</strong></li>
+<li><strong>启动分区选择Windows系统所在的分区</strong></li>
+<li>菜单标题自拟,最好用英文</li>
+<li><strong>启动文件:如果是UEFI固件,那就是winload.efi.(如果是BIOS固件,那就是winload.exe.)</strong></li>
+<li>系统路径,系统语言不用改</li>
+<li><strong>所有的路径前面别忘了加一个反斜杠!(\)</strong></li>
+<li>safeboot,PAE,NX保持默认设置</li>
+<li><strong>不启用win 8 metro界面.</strong>(除了美观,没别的作用,拖慢启动菜单选择速度)</li>
+<li><strong>启动到winPE不勾选或者半勾选.</strong></li>
+<li>每次编辑完成后,先点击<code>保存当前系统设置</code>,<code>再点击保存全局设置</code></li>
+<li><strong>超时时间</strong>按照自己的习惯设置(能反应过来就行)</li>
+<li>其余的选项保持默认</li>
+</ul>
+<blockquote>
+<p>你可能有一个疑惑:为什么有的选项的勾选状态有三种,分别是<strong>勾选,不勾选和半勾选?</strong></p>
+<p>网上并没有统一的说法,但是根据笔者经验,半勾选的状态代表这个功能对于当前启动项,**能开启就开启,不能开启就不开启,属于中间模棱两可的状态,**是否开启取决于启动时的启动环境条件.</p>
+</blockquote>
+<p><strong>至此,BCD编辑讲解结束.</strong></p>
+<p>BCD编辑结束后,操作系统的启动也就<strong>接近了尾声.</strong></p>
+<hr>
+<h4 id="UEFI启动Windows的最后阶段"><a href="#UEFI启动Windows的最后阶段" class="headerlink" title="UEFI启动Windows的最后阶段"></a>UEFI启动Windows的最后阶段</h4><p>bootmgfw.efi通过读取BCD文件,把操作系统启动菜单列出在Windows启动管理器界面,供用户选择启动.</p>
+<p>用户选择一个项目启动之后,bootmgfw.efi根据BCD文件里面记录的启动项目的启动文件(也就是</p>
+<p><code>\Windows\system32\winload.efi</code>),加载运行这个winload.efi.</p>
+<p>然后bootmgfw.efi就把计算机的控制权交给了winload.efi这个程序.</p>
+<p>winload.efi程序负责加载Windows系统的内核,启动Windows.</p>
+<p><strong>UEFI固件模式下的Windows系统至此启动完毕.</strong></p>
+<hr>
+<h3 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h3><ul>
+<li>EFI分区为什么在文件资源管理器里面看不见?<ul>
+<li>EFI分区的重要性不言而喻.一旦用户错误更改了里面的文件,就可能导致Windows系统关机后无法再次启动.对于如此重要的分区,操作系统把他隐藏了起来,不让用户触及.</li>
+<li>我们可以使用系统自带的<code>磁盘管理</code>工具看见EFI分区.或使用第三方软件diskgenius浏览编辑里面的文件.</li>
+</ul>
+</li>
+<li>为什么存在两个相同的文件<strong>bootx64.efi,bootmgfw.efi?</strong><ul>
+<li>事实上,UEFI规范中,把bootx64.efi这个程序作为UEFI固件启动的默认启动程序.也就是当NVRAM里面没有任何记录的时候,UEFI固件默认加载bootx64.efi.</li>
+<li>bootx64.efi的位置是固定的,位于EFI分区的<code>\EFI\boot\bootx64.efi</code></li>
+<li>微软把bootx64.efi当做一个启动的备用选项.一旦bootmgfw.efi损坏丢失,UEFI固件可以启动bootx64.efi,同样启动Windows系统.</li>
+<li><strong>更详细的内容,请阅读我的第59篇文章:《关于Windows Boot Manager,Bootmgfw.efi,Bootx64.efi,bcdboot.exe 的详解》</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h3 id="BIOS固件启动Windows系统"><a href="#BIOS固件启动Windows系统" class="headerlink" title="BIOS固件启动Windows系统"></a>BIOS固件启动Windows系统</h3><p>有了UEFI固件的基础,理解BIOS固件启动Windows能够更加轻松.</p>
+<p>BIOS固件作为老式的固件,一定会在不久的将来被淘汰.但是现在有一定量的计算机使用这种固件,所以还是有必要学习研究.</p>
+<hr>
+<h4 id="BIOS固件启动Windows系统对磁盘的要求"><a href="#BIOS固件启动Windows系统对磁盘的要求" class="headerlink" title="BIOS固件启动Windows系统对磁盘的要求"></a>BIOS固件启动Windows系统对磁盘的要求</h4><p>和UEFI不同,BIOS固件对安装有Windows的磁盘有特殊的要求.具体表现为:</p>
+<ul>
+<li>磁盘分区表必须是MBR</li>
+<li>必须要有一个激活主分区(活动分区)</li>
+</ul>
+<hr>
+<h4 id="BIOS固件对Windows系统版本没有要求"><a href="#BIOS固件对Windows系统版本没有要求" class="headerlink" title="BIOS固件对Windows系统版本没有要求."></a>BIOS固件对Windows系统版本没有要求.</h4><hr>
+<h4 id="BIOS固件的启动方式"><a href="#BIOS固件的启动方式" class="headerlink" title="BIOS固件的启动方式"></a>BIOS固件的启动方式</h4><p>与UEFI依赖文件启动的模式不同,BIOS固件通过运行代码启动系统,因此可操作性更低.</p>
+<blockquote>
+<p><strong>分区表:</strong></p>
+<p>目前为止,磁盘的分区表有两种类型:<strong>MBR和GPT</strong>(又叫GUID).MBR是一种年代久远的分区表类型,GPT是一种新型的分区表类型.</p>
+<p>BIOS固件只能识别MBR分区表,UEFI固件两种都能识别.</p>
+<p>这两种分区表类型可以互相转换,并不会影响硬盘里的原有数据(无损转换).</p>
+<ul>
+<li><p>采用MBR分区表的磁盘最多支持分出<strong>4个主分区</strong>,只能识别不超过2TB的磁盘.然而,可以通过<strong>创建逻辑分区</strong>的方法来分出更多的分区.</p>
+</li>
+<li><p>采用GPT分区表的磁盘最多支持<strong>128个分区</strong>,能识别不超过<strong>9.4ZB的硬盘.</strong></p>
+</li>
+</ul>
+<p>可见,<strong>GPT是一种更加先进的分区表类型,管理起来更加灵活.</strong></p>
+</blockquote>
+<p>只要磁盘是<strong>MBR分区表</strong>,且磁盘完好,它就可以被BIOS识别.</p>
+<p><strong>BIOS引导启动的第一步,就是读取磁盘的主引导记录MBR.</strong></p>
+<hr>
+<h4 id="主引导记录-MBR"><a href="#主引导记录-MBR" class="headerlink" title="主引导记录(MBR)"></a>主引导记录(MBR)</h4><p><strong>首先,请注意,这里存在一个”重名”的问题:</strong></p>
+<p>主引导记录的名字叫MBR.一种磁盘分区表类型也叫MBR.所以,为了避免混淆,<strong>主引导记录我们直接称之为三个字母:MBR,分区表类型我们称之为”MBR分区表”.</strong></p>
+<hr>
+<p>什么是MBR呢?</p>
+<p>主引导记录（MBR,Master Boot Record）是采用MBR分区表的硬盘的<strong>第一个扇区所存储的一段代码.</strong></p>
+<p><strong>简单来说,MBR是一段代码.它位于一个磁盘的第一个扇区.</strong></p>
+<hr>
+<h4 id="MBR是做什么的"><a href="#MBR是做什么的" class="headerlink" title="MBR是做什么的?"></a>MBR是做什么的?</h4><p>MBR主要有两个功能.</p>
+<ul>
+<li><p>记录下来整个硬盘的<strong>分区结构</strong>.比如,一个MBR分区表类型的磁盘有3个分区,这些分区都位于磁盘的第多少扇区等等,这些信息都记录在MBR里,供BIOS读取.</p>
+</li>
+<li><p>记录<strong>活动分区</strong>.如果一个MBR分区表磁盘上装有操作系统,则这个磁盘上装有操作系统的分区可能是活动分区.如果磁盘没有操作系统,只是存储数据,那么该磁盘的活动分区<strong>可有可无.</strong></p>
+</li>
+<li><p><strong>有操作系统的磁盘一定有活动分区.</strong></p>
+</li>
+</ul>
+<p>哪个分区是活动分区被记录在MBR里,使用1字节空间.</p>
+<blockquote>
+<p>活动分区的设定可以使用工具软件(如DiskGenius)手动选择.</p>
+</blockquote>
+<p>那么,BIOS的引导流程迈出了第一步:通过读取MBR,BIOS已经知道了哪个分区是活动分区了.</p>
+<p>所以接下来,就都是那个活动分区里的事了.</p>
+<hr>
+<h3 id="分区引导记录-PBR"><a href="#分区引导记录-PBR" class="headerlink" title="分区引导记录(PBR)"></a>分区引导记录(PBR)</h3><p>分区引导记录(PBR),全称Partition boot record.与MBR类似,它也是一段代码.</p>
+<p>它发挥的作用与主引导记录相接续,负责启动系统的下一步.</p>
+<p>如果说MBR管理的是整个磁盘,那么PBR管理的就是它所在的分区.</p>
+<p>对于使用MBR分区表的磁盘,每一个分区都有他自己的PBR.PBR的位置在他所属的分区的最前部扇区.</p>
+<ul>
+<li>普通分区的PBR记载的内容就是有关这个分区的各种参数,比如分区的文件系统类型,分区大小等等.</li>
+<li><strong>活动分区的PBR还记载<code>BOOTMGR</code>的位置.</strong></li>
+</ul>
+<hr>
+<h4 id="BOOTMGR是什么"><a href="#BOOTMGR是什么" class="headerlink" title="BOOTMGR是什么?"></a>BOOTMGR是什么?</h4><p>BOOTMGR是一个文件,是Windows的加载启动器,是一个在BIOS内运行的程序.他对标的就是bootmgfw.efi.</p>
+<p>也就是说,BOOTMGR就相当于UEFI固件里面的bootmgfw.efi.它们的功能类似,都是Windows启动管理器.</p>
+<p>它的位置是固定不变的,只能位于<strong>活动分区的根目录里</strong>.因为PBR认为它只能在那里.</p>
+<hr>
+<p><strong>活动分区的PBR的作用之一就是找到这个BOOTMGR,然后运行它.</strong></p>
+<p>BOOTMGR运行后,就与UEFI的启动流程大体相似了.</p>
+<hr>
+<h3 id="BOOTMGR的工作"><a href="#BOOTMGR的工作" class="headerlink" title="BOOTMGR的工作"></a>BOOTMGR的工作</h3><p>BOOTMGR一般位于活动分区的根目录里,而且活动分区一般是C盘.所以他一般在C盘根目录里面.</p>
+<p><strong>属于受操作系统保护的文件</strong>.如果不在文件资源管理器里勾掉”隐藏受操作系统保护的文件”这一项,即使显示隐藏的项目,文件资源管理器也不会显示它.</p>
+<p><strong>因为他对于Windows启动实在是太重要了.</strong></p>
+<p>BOOTMGR的作用与UEFI里的bootmgfw.efi是一样的:<strong>读取BCD文件并加载列出里面的操作系统菜单.</strong></p>
+<p><strong>BIOS模式启动的BCD文件的位置在活动分区的boot文件夹里.一般情况下,位于 <code>C:\boot\BCD</code></strong></p>
+<hr>
+<h4 id="编辑BIOS的BCD文件"><a href="#编辑BIOS的BCD文件" class="headerlink" title="编辑BIOS的BCD文件"></a>编辑BIOS的BCD文件</h4><p>和UEFI下的BCD文件相比,只有一点不同之处:</p>
+<ul>
+<li><strong>启动文件变为<code>\Windows\system32\winload.exe</code></strong></li>
+</ul>
+<p>其他配置与UEFI一致.</p>
+<p>这很好理解.UEFI下一定运行efi程序,所以是winload.efi.BIOS下运行的程序就只能是winload.exe了.</p>
+<hr>
+<p><code>BOOTMGR</code>列出BCD文件里面的菜单后,用户任意选择一个有效的系统回车进入.</p>
+<p>然后,BOOTMGR根据BCD文件里的信息,运行位于 <code>\Windows\System32</code> 文件夹里的 <code>winload.exe</code>.</p>
+<p>之后,winload.exe加载Windows操作系统内核.</p>
+<p><strong>BIOS引导启动到此结束.</strong></p>
+<hr>
+<hr>
+<h2 id="UEFI引导流程图"><a href="#UEFI引导流程图" class="headerlink" title="UEFI引导流程图"></a>UEFI引导流程图</h2><p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93UEFI%E6%B5%81%E7%A8%8B.png" alt="uefi"></p>
+<h2 id="BIOS引导流程图"><a href="#BIOS引导流程图" class="headerlink" title="BIOS引导流程图"></a>BIOS引导流程图</h2><p><img src="https://gitee.com/swodni/picture-bed/raw/master/93949596979899100/93BIOS%E6%B5%81%E7%A8%8B.png" alt="bios"></p>
+<hr>
+<h2 id="修复Windows系统引导的一般方法"><a href="#修复Windows系统引导的一般方法" class="headerlink" title="修复Windows系统引导的一般方法"></a>修复Windows系统引导的一般方法</h2><p>当我们拿到了一个引导出现故障的Windows系统的时候,我们一般应该使用何种方法快速的修复他的引导呢?</p>
+<p><strong>笔者推荐使用Dism++这个软件修复引导.</strong></p>
+<hr>
+<h3 id="使用Dism-修复Windows系统引导"><a href="#使用Dism-修复Windows系统引导" class="headerlink" title="使用Dism++修复Windows系统引导"></a>使用Dism++修复Windows系统引导</h3><p>Dism++几乎内置于所有主流的PE系统里面.当然,他也可以在Windows系统里面使用.</p>
+<p>打开Dism++.</p>
+<ul>
+<li>点击需要修复引导的系统.</li>
+<li>点击<code>恢复功能-&gt;引导修复</code></li>
+<li>点击<code>确定</code></li>
+<li>引导修复完成</li>
+</ul>
+<blockquote>
+<p><strong>[注意事项与问题]</strong></p>
+<p>Dism++判断应该修复UEFI模式的引导还是BIOS模式的引导是通过检测磁盘分区表的类型.</p>
+<p>默认是UEFI+GPT,BIOS+MBR.</p>
+<p>所以,如果你在UEFI主板上使用了一块MBR分区表的磁盘安装Windows系统,Dism++会默认修复BIOS引导.(也就是重建MBR,修复BOOTMGR,以及适合于BIOS的BCD文件).</p>
+<p>如果你遇到了上述情况,并且由于某些原因必须使用MBR分区表,那么Dism++的引导修复功能就是无效的修复.这时,有两种方案可供你选择,修复<code>UEFI固件+MBR分区表</code>的引导:</p>
+<p><strong>方案一:</strong></p>
+<p>首先使用DiskGenius软件,将磁盘分区表转换为GPT分区表类型.然后,再使用Dism++软件修复引导.</p>
+<p>接着,在DiskGenius软件里面打开EFI分区,将其中的<code>\EFI\Microsoft\Boot\BCD</code>这个BCD文件复制到其他任意位置.(注意:不可以复制到这个磁盘里面了,可以复制到PE系统的系统盘里面,比如,PE系统的桌面.)</p>
+<p>然后,再次使用DiskGenius软件把这个磁盘的分区表转换回MBR分区表.</p>
+<p>最后,把复制出来的BCD文件替换回原来的位置.</p>
+<p>为什么要复制出来并且替换BCD?因为BCD文件会在他所在的磁盘的分区表类型变化的时候丢失引导信息.</p>
+<p><strong>方案二:</strong></p>
+<p>首先,使用DiskGenius软件,在别的电脑上找到并打开一个正常的EFI分区.</p>
+<p>接着,把根目录里面的EFI文件夹拷贝到需要修复引导的MBR磁盘的EFI分区里面.</p>
+<p>最后,编辑目标磁盘里的BCD文件,确保能够启动该磁盘上的Windows系统.</p>
+</blockquote>
+<hr>
+<h2 id="Windows系统启动流程到此介绍结束"><a href="#Windows系统启动流程到此介绍结束" class="headerlink" title="Windows系统启动流程到此介绍结束."></a>Windows系统启动流程到此介绍结束.</h2><h3 id="如有不足请见谅-大神请轻喷"><a href="#如有不足请见谅-大神请轻喷" class="headerlink" title="如有不足请见谅,大神请轻喷!!!"></a>如有不足请见谅,大神请轻喷!!!</h3><p><strong>欢迎加入我的微信群交流探讨.</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

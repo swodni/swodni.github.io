@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="三个启动菜单的区别辨析与本质探索"><a href="#三个启动菜单的区别辨析与本质探索" class="headerlink" title="三个启动菜单的区别辨析与本质探索"></a>三个启动菜单的区别辨析与本质探索</h1><p><strong>你是否傻傻分不清以下三种启动菜单的本质到底是什么？</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/33%E6%B7%B1%E8%93%9D.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/33%E9%BB%91.png"></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/33%E6%B5%85%E8%93%9D.png"></p>
+<p><strong>有一个看起来非常古老生硬，蓝色大背景，字母丑陋；</strong></p>
+<p><strong>还有一个看起来老气横秋，黑底白字，像极了远古时期的电脑报废的样子（</strong></p>
+<p><strong>第三个看起来却高端大气上档次，优雅简洁，满满的磁贴风格，商务感十足。</strong></p>
+<p><strong>（不是我说，同样的蓝色背景，给人的感觉差异怎么会这么大:）</strong></p>
+<p><strong>现在我们探究一下这三种启动菜单到底都和什么相关联。</strong></p>
+<h3 id="UEFI启动菜单"><a href="#UEFI启动菜单" class="headerlink" title="UEFI启动菜单"></a>UEFI启动菜单</h3><p><strong>那个古老生硬，有蓝色大背景，字体丑陋的启动菜单便是UEFI启动菜单。仔细观察这个菜单里的项目的名称，看起来并不像是Windows操作系统的名字，倒像是一些固件的名字，比如磁盘（NSID），U盘和光盘驱动器（CDROM Drive)。</strong></p>
+<p><strong>我们由此推测，UEFI启动菜单与操作系统Windows是不是没什么太大关系？</strong></p>
+<p><strong>事实上，他们之间的联系很少。还记得UEFI固件在引导操作系统启动时的发挥功能吗？就是加载efi程序。</strong></p>
+<p><strong>第一步，寻找UEFI能识别的文件系统的分区。其实就是寻找以FAT32,FAT16,FAT12为文件系统的分区。</strong></p>
+<p><strong>第二步，寻找这些分区里的efi程序。当然，UEFI固件不会盲目的寻找efi程序，而是遵循着一个固定的文件目录结构。这个文件目录结构在我的第19篇：《Windows计算机启动过程分析1》 里介绍的十分详细。</strong></p>
+<p><strong>通过这个固定的目录结构（EFI-&gt;Microsoft-&gt;Boot-&gt;bootmgfw.efi)，UEFI固件找到了bootmgfw.efi这个efi程序，并把它的信息放在了UEFI启动菜单里，作为一个启动项。</strong></p>
+<p><strong>我们通过键盘选择一个启动项目，回车进入，本质上就是运行了这个efi程序。</strong></p>
+<h4 id="由此可见，在UEFI启动菜单这一阶段，并不涉及和Windows系统启动运行的任何关系，只是运行了一个bootmgfw-efi。"><a href="#由此可见，在UEFI启动菜单这一阶段，并不涉及和Windows系统启动运行的任何关系，只是运行了一个bootmgfw-efi。" class="headerlink" title="由此可见，在UEFI启动菜单这一阶段，并不涉及和Windows系统启动运行的任何关系，只是运行了一个bootmgfw.efi。"></a>由此可见，在UEFI启动菜单这一阶段，并不涉及和Windows系统启动运行的任何关系，只是运行了一个bootmgfw.efi。</h4><p><strong>然而，bootmgfw.efi是微软为了Windows系统启动特制的一款efi启动程序，中文名为 Windows启动管理器。我们可以猜测一下，他的全名可能是boot manager for Windows。</strong></p>
+<h3 id="操作系统启动菜单"><a href="#操作系统启动菜单" class="headerlink" title="操作系统启动菜单"></a>操作系统启动菜单</h3><p><strong>对于Windows系统，我们在UEFI固件里选择了bootmgfw.efi这个启动项后，UEFI就把计算机的控制权交给了这个程序。所以，从这里开始，直到Windows启动成功，所有的运行过程都是bootmgfw.efi杰作。</strong></p>
+<p><strong>在那个黑底白字的“Windows启动管理器”界面，便是bootmgfw.efi的界面。它列出了操作系统的名称列表供我们选择一个并启动。那么他列出的这个操作系统的启动列表又是从哪里得到的呢？</strong></p>
+<p><strong>有两种可能的猜测：</strong></p>
+<p><strong>第一种：这个列表是内置于bootmgfw.efi这个程序里的。</strong></p>
+<p><strong>第二种：有另外一个文件里面储存了这个列表，bootmgfw.efi只是读取了这个文件，并把这个列表显示了出来。</strong></p>
+<p><strong>这道题的答案一定是第二种猜测。那个储存启动信息的文件就是BCD文件。</strong></p>
+<p><strong>有关BCD文件的配置，编辑等操作，在我的第20篇： 《Windows计算机启动过程分析2》 里面有详细的介绍。</strong></p>
+<h4 id="微软在发布Windows-8的时候越发的觉得这种黑底白字的Windows启动管理器非常的不雅观。所以，从Windows-8开始，微软使用了全新的Windows启动管理器界面，也就是我们看到的十分现代，高端，大气，上档次的浅蓝色界面——Windows-8-Metro界面。"><a href="#微软在发布Windows-8的时候越发的觉得这种黑底白字的Windows启动管理器非常的不雅观。所以，从Windows-8开始，微软使用了全新的Windows启动管理器界面，也就是我们看到的十分现代，高端，大气，上档次的浅蓝色界面——Windows-8-Metro界面。" class="headerlink" title="微软在发布Windows 8的时候越发的觉得这种黑底白字的Windows启动管理器非常的不雅观。所以，从Windows 8开始，微软使用了全新的Windows启动管理器界面，也就是我们看到的十分现代，高端，大气，上档次的浅蓝色界面——Windows 8 Metro界面。"></a><strong>微软在发布Windows 8的时候越发的觉得这种黑底白字的Windows启动管理器非常的不雅观。所以，从Windows 8开始，微软使用了全新的Windows启动管理器界面，也就是我们看到的十分现代，高端，大气，上档次的浅蓝色界面——Windows 8 Metro界面。</strong></h4><p><strong>因此，Windows 8 Metro风格启动管理器和黑底白字的老式启动管理器的本质是一致的，都是读取BCD并引导Windows启动。只不过Windows 8 之后，启动管理器换了一身华丽的“衣服”而已。</strong></p>
+<p><strong>但是，华丽的Metro也有他的缺点，就是从开机到Metro显示出来的时间比老版本的要更长。</strong></p>
+<p><strong>我们可以通过在bootice里面编辑BCD文件的方式，取消使用Metro模式，加速虚拟机的启动。</strong></p>
+<p><strong>阅读完本文，希望你可以对启动引导菜单有更深刻的认识。</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

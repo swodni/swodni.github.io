@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="Windows计算机启动过程分析1"><a href="#Windows计算机启动过程分析1" class="headerlink" title="Windows计算机启动过程分析1"></a>Windows计算机启动过程分析1</h1><p>  <strong>想要真正理解为什么winntsetup里的选项需要这样配置,需要了解Windows计算机启动流程.</strong></p>
+<h2 id="启动主板UEFI固件"><a href="#启动主板UEFI固件" class="headerlink" title="启动主板UEFI固件"></a>启动主板UEFI固件</h2><p>  <strong>按下开机键后,第一步便是启动主板UEFI固件.UEFI固件和Windows系统一点联系都没有,全名叫做 <em>统一扩展固件接口.</em></strong></p>
+<p>  <strong>UEFI取代了传统的BIOS固件,是时下所有新生产的电脑都配备的固件.一般来说,2015年以后的电脑都属于UEFI模式启动.</strong></p>
+<p>  <strong>在启动Windows前,计算机必须先启动UEFI固件.通过UEFI,计算机得以一步一步地引导Windows系统启动.</strong></p>
+<blockquote>
+<p><strong>只有Windows8及以后的Windows操作系统才支持UEFI固件.Windows7及以前的操作系统只支持BIOS固件.</strong></p>
+</blockquote>
+<p><strong>Intel生产的UEFI固件启动菜单样式即为我们在VM中选择 “启动时进入固件” 看见的蓝色界面.这是UEFI的选择启动引导菜单界面.不同的生产商生产的UEFI界面不同,但功能类似.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19UEFI%E7%95%8C%E9%9D%A2.png" alt="871c7b858ad6b823cae9feb4d6cd7e3f.png"></p>
+<p>  <strong>对于我们来说,UEFI的主要作用就是<em>引导操作系统启动</em>.</strong></p>
+<p>  <strong>那么,UEFI是如何做到的呢?</strong></p>
+<blockquote>
+<p><strong>这就与系统引导分区(ESP分区)息息相关.</strong></p>
+</blockquote>
+<h2 id="ESP分区"><a href="#ESP分区" class="headerlink" title="ESP分区"></a>ESP分区</h2><p>  <strong>ESP分区,又名EFI分区,是一个存放操作系统启动文件的磁盘分区.EFI分区通常大小很小,约为200-300MB.</strong></p>
+<p>  <strong>值得注意的是,EFI分区的文件系统一般都是FAT32或FAT16类型!</strong></p>
+<p>  <strong><u>因为一般的UEFI固件只能识别并读取FAT32和FAT16文件系统类型.</u></strong></p>
+<h3 id="EFI分区的文件目录"><a href="#EFI分区的文件目录" class="headerlink" title="EFI分区的文件目录"></a>EFI分区的文件目录</h3><p>  <strong>EFI分区拥有固定的文件目录,这都是为了迎合UEFI主板的口味.</strong></p>
+<p>  <strong>问题来了,如何才能打开EFI分区,看看分区里面的文件呢?</strong></p>
+<p>  <strong>EFI分区实际上属于操作系统的隐藏分区,而且保密级别高.不能通过 磁盘管理 分配新盘符,而是需要用第三方软件分配盘符.</strong></p>
+<h3 id="DiskGenius磁盘管理工具"><a href="#DiskGenius磁盘管理工具" class="headerlink" title="DiskGenius磁盘管理工具"></a>DiskGenius磁盘管理工具</h3><p>  <strong>DiskGenius(简称DG)是一款优秀的老牌磁盘管理软件,由中国人开发.我们几乎可以使用DG完成一切能够对磁盘进行的操作.</strong></p>
+<p>  <strong>在这一回合中,我们通过DG给EFI分区一个盘符.(DG下载我在以前的文章里给过)</strong></p>
+<p><strong>操作方法:</strong></p>
+<pre><code>1.打开DG,在左侧找到ESP分区
+2.右键ESP分区,指派新的驱动器号(盘符)
+3.确定
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19DGEFI1.png" alt="cf1c60a2ad09d987c43d46626e9595dd.png"><br><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19DGEFI2.png" alt="4a3d3444943bcc9994c10f593ca843dc.png"></p>
+<p>  <strong>这样,拥有了盘符的EFI分区就可以显示在文件资源管理器中了.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19EFI%E5%9C%A8%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8.png" alt="7b26730fc9c06f79b67963f6c7a2b36f.png"></p>
+<p>  <strong>然而,操作系统心眼可是非常多的:)</strong></p>
+<blockquote>
+<p><strong>拒绝访问.</strong></p>
+</blockquote>
+<p>  <strong>操作系统也是好心好意,毕竟里面的文件极其重要,弄不好直接无法启动电脑.</strong></p>
+<p>  <strong>但是在虚拟机里,无法启动又算得了什么呢?:)</strong></p>
+<blockquote>
+<p><strong>上文提到的方法在PE系统中适用,PE系统可以无视各种权限,各种分区任你宰割.</strong></p>
+</blockquote>
+<p>  <strong>我们可以直接使用DG软件查看EFI分区里的文件.</strong></p>
+<p>  <strong>在DG里双击ESP分区,或者在右侧面板 浏览文件 都可以查看.你甚至可以右键一个文件或文件夹,复制到桌面.</strong></p>
+<p>  <strong>EFI分区的目录如下:(无需掌握)</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19EFI%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.gif" alt="fd23224dde72ddf568c52124134a022b.gif"></p>
+<pre><code>EFI
+    ├─Boot
+    └─Microsoft
+        ├─Boot
+        │  ├─bg-BG
+        │  ├─cs-CZ
+        │  ├─da-DK
+        │  ├─de-DE
+        │  ├─el-GR
+        │  ├─en-GB
+        │  ├─en-US
+        │  ├─es-ES
+        │  ├─es-MX
+        │  ├─et-EE
+        │  ├─fi-FI
+        │  ├─Fonts
+        │  ├─fr-CA
+        │  ├─fr-FR
+        │  ├─hr-HR
+        │  ├─hu-HU
+        │  ├─it-IT
+        │  ├─ja-JP
+        │  ├─ko-KR
+        │  ├─lt-LT
+        │  ├─lv-LV
+        │  ├─nb-NO
+        │  ├─nl-NL
+        │  ├─pl-PL
+        │  ├─pt-BR
+        │  ├─pt-PT
+        │  ├─qps-ploc
+        │  ├─Resources
+        │  │  ├─en-US
+        │  │  └─zh-CN
+        │  ├─ro-RO
+        │  ├─ru-RU
+        │  ├─sk-SK
+        │  ├─sl-SI
+        │  ├─sr-Latn-RS
+        │  ├─sv-SE
+        │  ├─tr-TR
+        │  ├─uk-UA
+        │  ├─zh-CN
+        │  └─zh-TW
+        └─Recovery
+</code></pre>
+<p>  <strong>为什么说,EFI分区里的文件目录的这种结构不可以改变呢?</strong></p>
+<p>  <strong>这就要介绍一种新的文件类型:efi文件.</strong></p>
+<h3 id="efi文件"><a href="#efi文件" class="headerlink" title="*.efi文件"></a>*.efi文件</h3><p>  <strong>efi文件可以被理解为UEFI系统里的软件.(很像exe)efi文件也是一种程序.</strong></p>
+<p>  <strong>efi程序作用是引导操作系统启动.UEFI固件在启动计算机过程中一个重要的任务便是寻找到efi程序,并把efi程序列出在系统引导菜单里.</strong></p>
+<p>  <strong>efi程序被放在EFI引导分区里,由于EFI分区是FAT32或FAT16文件系统,UEFI固件可以识别并访问EFI分区里的文件.</strong></p>
+<p>  <strong>常见的efi程序包括:</strong></p>
+<pre><code>1.bootmgfw.efi
+2.bootmgr.efi
+3.memtest.efi
+4.bootx64.efi
+</code></pre>
+<p>  <strong>1.bootmgfw.efi:笔者以为是boot manager for Windows的缩写.因为这个efi程序是专门启动Windows系统用的.</strong></p>
+<p>  <strong>2.bootmgr.efi:可能是boot manager的简写,是在bootmgfw.efi丢失或损坏时的备用程序.</strong></p>
+<p>  <strong>3.bootx64.efi:最为神通广大的efi引导启动程序,可以引导除了Windows以外的其他操作系统,比如Linux.</strong></p>
+<p>  <strong>4.memtest.efi:计算机内存诊断工具.</strong></p>
+<p>  <strong>上文说到,UEFI固件把efi程序列在系统引导菜单里.那么,UEFI是如何寻找到这些efi程序的呢?</strong></p>
+<p>  <strong>EFI分区的目录结构之所以不能改变,原因就在于此.UEFI固件”记住”了EFI分区的目录结构.所有的生产厂家都需要按照这个目录结构存放自己的EFI分区文件.</strong></p>
+<p>  <strong>也就是说,UEFI固件寻找bootmgfw.efi程序的过程是这样的:</strong></p>
+<pre><code>1.扫描EFI分区(文件系统为FAT32或FAT16的分区)
+2.进入EFI分区,按照 EFI-&gt;Microsoft-&gt;Boot-&gt;bootmgfw.efi的顺序寻找efi程序
+3.找到后,把bootmgfw.efi所包含的信息列在UEFI引导菜单上(叫做Windows boot manager)
+</code></pre>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/1718192021/19UEFIwbm.png" alt="d749dcaeb97b9c982970e371479f87ae.png"></p>
+<p>  <strong>在下一节,我们将具体介绍bootmgfw的工作过程.</strong></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

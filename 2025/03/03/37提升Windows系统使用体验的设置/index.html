@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="提升Windows系统使用体验的设置"><a href="#提升Windows系统使用体验的设置" class="headerlink" title="提升Windows系统使用体验的设置"></a><strong>提升Windows系统使用体验的设置</strong></h1><p>  <strong>我们在日常使用Windows系统的过程中,或多或少会遇到一些令人头疼的小问题或者机械繁琐的操作.本文整理了一些Windows系统中一些常见的令人头疼的小问题的解决方案.</strong></p>
+<h2 id="修改-软件安装包默认安装位置为D盘"><a href="#修改-软件安装包默认安装位置为D盘" class="headerlink" title="修改:软件安装包默认安装位置为D盘"></a><strong>修改:软件安装包默认安装位置为D盘</strong></h2><blockquote>
+<p><strong>这是第一种方法,在未来的文章里,我会介绍其他的方法.</strong>  </p>
+</blockquote>
+<p><strong>运行安装包后,软件总是默认安装到C盘里,每次需要手动修改为其他的盘符,非常的不便.我们可以通过修改注册表的方法修改默认安装位置.</strong></p>
+<blockquote>
+<p><strong>修改注册表有风险!操作需谨慎!!!</strong></p>
+<p><strong>注册表文件(reg)字符编码最好选择ANSI.</strong></p>
+</blockquote>
+<p>  <strong>新建一个文本文档txt.在里面输入:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion]</span><br><span class="line">&quot;ProgramFilesDir&quot;=&quot;D:\\Program Files&quot;</span><br><span class="line">&quot;ProgramFilesDir (x86)&quot;=&quot;D:\\Program Files (x86)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>点击右上角 文件-&gt;另存为</strong></p>
+<p>  <strong>编码选择ANSI,保存.</strong></p>
+<p>  <strong>把txt文件后缀名修改为reg,双击运行这个reg,点击确定.</strong></p>
+<p>  <strong>这样,注册表成功导入.</strong></p>
+<p>  <strong>然后,进入D盘.在D盘里新建两个文件夹:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Program Files</span><br><span class="line">Program Files (x86)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>请注意文件夹名字里的大小写和空格!!!</strong></p>
+</blockquote>
+<p>  <strong>注销或重启电脑.</strong></p>
+<p>  <strong>操作结束.</strong></p>
+<p>  <strong>通过这种方法,我们可以把默认安装位置为C:\Program Files (x86)和C:\Program Files 的软件改为在D:\Program Files (x86)和D:\Program Files 里.</strong></p>
+<blockquote>
+<p><strong>然而,笔者在修改这些设置的时候遇到了一个问题.修改后,有的桌面图标的目标位置从C:\Program Files或者C:\Program Files (x86)变为了D:\Program Files (x86)和D:\Program Files .然而,有的桌面图标的目标位置没有发生变化.</strong></p>
+<p><strong>目前笔者想不通为什么会出现这种情况,可能是由于部分软件的自我保护机制吧,他们可能会根据环境变量自己改变快捷方式的目标位置.所以我们只能再次为那些软件创建他们的快捷方式.</strong></p>
+</blockquote>
+<h2 id="修改-选择保存位置的对话框”直击桌面”"><a href="#修改-选择保存位置的对话框”直击桌面”" class="headerlink" title="修改:选择保存位置的对话框”直击桌面”"></a><strong>修改:选择保存位置的对话框”直击桌面”</strong></h2><p>  <strong>有些文件(比如office新建的word,Windows截图等)默认的对话框里保存位置是一些比较冷门的文件夹,比如如”文档”,”图片”,”音乐”,”视频”这几个文件夹.我们每次保存文件的时候,都要点一下”桌面”这个文件夹,十分的费事.</strong></p>
+<p>  <strong>我们仍然通过修改注册表的方法,使那些选择保存位置的对话框”直击桌面”,不用再次选择”桌面”文件夹.</strong></p>
+<p>  <strong>这一次,自己新建注册表文件里输入以下内容:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders]</span><br><span class="line">&quot;My Music&quot;=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\</span><br><span class="line">  4c,00,45,00,25,00,5c,00,4d,00,75,00,73,00,69,00,63,00,00,00</span><br><span class="line">&quot;My Pictures&quot;=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,\</span><br><span class="line">  00,4c,00,45,00,25,00,5c,00,50,00,69,00,63,00,74,00,75,00,72,00,65,00,73,00,\</span><br><span class="line">  00,00</span><br><span class="line">&quot;My Video&quot;=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\</span><br><span class="line">  4c,00,45,00,25,00,5c,00,56,00,69,00,64,00,65,00,6f,00,73,00,00,00</span><br><span class="line">&quot;Personal&quot;=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\</span><br><span class="line">  4c,00,45,00,25,00,5c,00,44,00,65,00,73,00,6b,00,74,00,6f,00,70,00,00,00</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>然后把这个reg导入注册表,注销或重启即可.</strong></p>
+<p>  <strong>这样,以后大多数文件选择保存位置的时候,都能直接选择保存到桌面上.</strong></p>
+<h2 id="隐藏-此电脑里常用文件夹"><a href="#隐藏-此电脑里常用文件夹" class="headerlink" title="隐藏:此电脑里常用文件夹"></a><strong>隐藏:此电脑里常用文件夹</strong></h2><p>  <strong>“文档”,”图片”,”音乐”,”视频”,”3D对象”,”下载”文件夹默认显示在”此电脑”里,占用文件资源管理器的上半部分空间,我认为他们的意义不大.不需要可以隐藏.</strong></p>
+<p>  <strong>通过修改注册表,我们可以把他们隐藏起来.</strong></p>
+<p>  <strong>这次,注册表文件的内容是:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;B4BFCC3A-DB2C-424C-B029-7FE99A87C641&#125;\PropertyBag]</span><br><span class="line">&quot;NoCustomize&quot;=dword:00000001</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;35286a68-3c57-41a1-bbb1-0eae73d76c95&#125;\PropertyBag]</span><br><span class="line">&quot;BaseFolderId&quot;=&quot;&#123;18989B1D-99B5-455B-841C-AB7C74E4DDFC&#125;&quot;</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;0ddd015d-b06c-45d5-8c4c-f59713854639&#125;\PropertyBag]</span><br><span class="line">&quot;BaseFolderId&quot;=&quot;&#123;33E28130-4E1E-4676-835A-98395C3BC3BB&#125;&quot;</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;f42ee2d3-909f-4907-8871-4c22fc0bf756&#125;\PropertyBag]</span><br><span class="line">&quot;BaseFolderId&quot;=&quot;&#123;FDD39AD0-238F-46AF-ADB4-6C85480369C7&#125;&quot;</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;7d83ee9b-2244-4e70-b1f5-5393042af1e4&#125;\PropertyBag]</span><br><span class="line">&quot;BaseFolderId&quot;=&quot;&#123;374DE290-123F-4565-9164-39C4925E467B&#125;&quot;</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\&#123;a0c69a99-21c8-4671-8703-7934162fcf1d&#125;\PropertyBag]</span><br><span class="line">&quot;BaseFolderId&quot;=&quot;&#123;4BD8D571-6D19-48D3-BE97-422220080E43&#125;&quot;</span><br><span class="line">&quot;ThisPCPolicy&quot;=&quot;Hide&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;0DB7E03F-FC29-4DC6-9020-FF41B59E513A&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>导入这个reg即可在文件资源管理器隐藏这些文件夹.</strong></p>
+<h2 id="优化-Windows11右键菜单直接显示全部内容"><a href="#优化-Windows11右键菜单直接显示全部内容" class="headerlink" title="优化:Windows11右键菜单直接显示全部内容"></a><strong>优化:Windows11右键菜单直接显示全部内容</strong></h2><p>  <strong>Windows11右键菜单自从Windows11发布就被几乎所有人诟病.它的二级显示菜单实在让人非常的不爽.使用一个powershell代码,即可轻松把Windows11的右键菜单样式变为以前的Windows10的风格.</strong></p>
+<p>  <strong>在开始菜单上右键,点击 Windows powershell(管理员),输入以下内容,回车.</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg add <span class="string">&quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot;</span> /f</span><br><span class="line">taskkill /F /IM explorer.exe</span><br><span class="line">explorer.exe</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>文件资源管理器自动重启,然后右键菜单成功被修改.</strong></p>
+<h2 id="精简-删除Windows11文件资源管理器左侧栏”主文件夹”"><a href="#精简-删除Windows11文件资源管理器左侧栏”主文件夹”" class="headerlink" title="精简:删除Windows11文件资源管理器左侧栏”主文件夹”"></a><strong>精简:删除Windows11文件资源管理器左侧栏”主文件夹”</strong></h2><p>  <strong>通过导入注册表解决这个问题.</strong></p>
+<p>  <strong>reg文件内容:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line">【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer】</span><br><span class="line">&quot;HubMode&quot;=dword:00000001</span><br><span class="line">【-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace_36354489\&#123;f874310e-b6b7-47dc-bc84-b9e6b38f5903&#125;】</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>打开文件资源管理器,可见主文件夹消失.</strong></p>
+<h2 id="精简-删掉右键菜单里多余的项目"><a href="#精简-删掉右键菜单里多余的项目" class="headerlink" title="精简:删掉右键菜单里多余的项目"></a><strong>精简:删掉右键菜单里多余的项目</strong></h2><p>  <strong>电脑使用的时间越长,右键菜单可能会变得越臃肿.使用一款名为”右键菜单管理器NET4.0.exe”可以帮助你管理结构复杂的右键菜单.</strong></p>
+<p>  <strong>管理右键菜单的软件有很多,但是笔者测试后发现,右键菜单管理器NET4.0.exe功能最强大,界面最简单通俗易懂.</strong></p>
+<p><strong><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/37%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95.png"></strong></p>
+<p>  <strong>软件无需过多介绍,使用很方便.</strong></p>
+<p>  <strong>下载链接:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://wwp.lanzn.com/iawIa1zjq62f</span><br><span class="line">密码:4kcx</span><br></pre></td></tr></table></figure>
+
+<h2 id="win10优化小工具"><a href="#win10优化小工具" class="headerlink" title="win10优化小工具"></a><strong>win10优化小工具</strong></h2><p>  <strong>由@吾爱破解大佬开发的Win10优化工具,本质是即时修改注册表.请注意”即时”二字.这意味着在勾选选项的时候,注册表会直接被更改,而不需要点击保存(他也没有保存这个按键).但是想要看到效果,需要点击重启文件资源管理器.</strong></p>
+<p><strong>使用方法:</strong></p>
+<p>  <strong>首先点击:读取本机配置.</strong></p>
+<p>  <strong>然后开始自行勾选自己喜欢的配置.</strong></p>
+<p>  <strong>重启文件资源管理器.</strong></p>
+<p>  <strong>“一键配置”选项是开发者的懒人选项,自动帮你调整为你可能喜欢的设置.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/37%E4%BC%98%E5%8C%96%E5%B0%8F%E5%B7%A5%E5%85%B7.png"></p>
+<p><strong>下载链接:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://wwp.lanzn.com/iKmjz1zjr65e</span><br><span class="line">密码:1bb4</span><br></pre></td></tr></table></figure>
+
+<h2 id="阻止Windows自动更新"><a href="#阻止Windows自动更新" class="headerlink" title="阻止Windows自动更新"></a><strong>阻止Windows自动更新</strong></h2><p>  <strong>使用一款小工具Wub,即可阻止Windows自动更新.</strong></p>
+<p>  <strong>操作十分简单,这里不再说明.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/333435363738/37wub.png"></p>
+<p>  <strong>下载链接:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://wwp.lanzn.com/ilaP51zjsgaf</span><br><span class="line">密码:fnuv</span><br></pre></td></tr></table></figure>
+
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="番外1-对PE启动U盘的思考"><a href="#番外1-对PE启动U盘的思考" class="headerlink" title="番外1 对PE启动U盘的思考"></a>番外1 对PE启动U盘的思考</h1><hr>
+<p>  <strong>我们在使用官方软件工具(如微PE工具箱)制作任何一个启动U盘的时候,他们总会提示我们:U盘需要格式化!!请备份好自己的数据!!</strong></p>
+<p>  <strong>我一直在思考:为什么一定要格式化呢?需要格式化吗?</strong><br>  <strong>为了解决这个问题,我开始思考启动盘的本质.</strong></p>
+<p>  <strong>启动盘的本质是什么?它怎么就能从一块平平无奇的U盘华丽转身为一个万能的启动盘了呢?</strong></p>
+<hr>
+<p>  <strong>启动盘只是一块拥有特定文件系统类型和目录结构的一块普普通通的U盘啊!</strong></p>
+<p>  <strong>既然这样,如果我们能够完全的模仿出一块完整的启动盘的特征,那么,我们可以使用微pe的ISO文件直接手搓一个启动U盘.</strong></p>
+<p>  <strong>我们是用的启动技术原理一定是&#x3D;&#x3D;Ramdisk&#x3D;&#x3D;.</strong></p>
+<hr>
+<p>  <strong>启动盘的特殊之处在哪里?</strong></p>
+<p>  <strong>1.有一个EFI引导分区.这个分区的文件系统类型应该是FAT32或FAT16的.</strong></p>
+<p>  <strong>2.包含一个可启动的PE系统镜像</strong></p>
+<p>  <strong>3.包含一个SDI文件</strong></p>
+<hr>
+<p>  <strong>以上的三个特征中,哪一个可能需要我们对U盘进行格式化?那肯定是第一个.因为理论上,改变文件系统类型需要格式化分区.</strong></p>
+<p>  <strong>第二个和第三个都只需要复制粘贴文件到U盘里就可以了.</strong></p>
+<hr>
+<p>  <strong>所以,现在问题变成了:我们如何在不格式化U盘的情况下,给U盘制造一个新的EFI分区?</strong></p>
+<p>  <strong><em>压缩卷</em> 给了我一丝灵感.</strong></p>
+<hr>
+<h3 id="何为-“压缩卷”"><a href="#何为-“压缩卷”" class="headerlink" title="何为 “压缩卷”?"></a>何为 “压缩卷”?</h3><p>  <strong>我们在 磁盘管理 里右击一个分区的时候,可能有一个选项就是 <em>压缩卷</em>.压缩卷不是把分区里的文件压缩,而是把分区剩余的空间”割”下来,并形成一个新的分区.这种操作并不会格式化分区和磁盘,而且完成的很迅速.</strong></p>
+<hr>
+<p>  <strong>既然这样,直接把U盘没用的空间压缩出300MB,然后把这300MB格式化成FAT32文件系统,不就可以得到一个U盘的EFI分区了吗?</strong></p>
+<p>  <strong>这是可行的.</strong></p>
+<p>  <strong>这是我的操作:</strong></p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/YgeiaKOLVSDsfg4icI9HHWyeiaI3nHqlCAG8NZwFicCVQCIUEmlrYTmwkj9TCibG07potiaSxIPqEWaJGk4dYwiccxWOQ/640?wx_fmt=gif&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="4b7e4d510da71506153c915329d39130.gif"></p>
+<p>  <strong>这样,我们绕过了U盘格式化,直接产生了EFI分区.</strong></p>
+<hr>
+<p>  <strong>下一个问题随之而来:EFI分区现在是空的.他的文件目录结构哪里可以搞到?</strong></p>
+<p>  <strong>我们以前说过,EFI分区里的文件目录结构是不会改变的,因为如果改变,UEFI固件则无法扫描到efi文件.</strong></p>
+<p>  <strong>所以,世界上所有Windows10系统的EFI分区里的文件结构都是一样的.我们就可以直接把自己电脑里的EFI分区里的所有文件直接复制到自己U盘的EFI分区里就完成了EFI分区的文件目录结构建立.</strong>(使用DiskGenius可以复制隐藏分区里的文件)</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/YgeiaKOLVSDsfg4icI9HHWyeiaI3nHqlCAGc2ia2vAeoLojAyorjicbI49xGo9ue4Vraibt0iaXSacicwVRgxjd5KWchqA/640?wx_fmt=gif&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="45387e4fe29f6a3fcd26fb4b81e3bf48.gif"></p>
+<hr>
+<p>  <strong>但是,复制出来的EFI文件夹里的内容不能直接使用.我们需要修改里面的BCD文件.因为这个BCD文件里面保存的还是Windows10系统的BCD启动菜单.</strong></p>
+<p>  <strong>如何修改BCD?这与我们的微pe镜像有很大联系.</strong></p>
+<h3 id="获取微pe的wim包"><a href="#获取微pe的wim包" class="headerlink" title="获取微pe的wim包"></a>获取微pe的wim包</h3><hr>
+<p>  <strong>微pe需要使用ramdisk模式启动.ramdisk模式启动的核心是必须要有操作系统的wim包.所以,第一步便是获取微pe的wim包.方法很简单.</strong></p>
+<p><strong>操作方法:</strong></p>
+<p>  <strong>1.打开微pe的ISO镜像</strong></p>
+<p>  <strong>2.打开文件夹 WEPE</strong></p>
+<p>  <strong>3.WEPE64.WIM就是微pe的wim包.</strong></p>
+<p>  <strong>4.把它复制到U盘的任意位置即可(最好不要复制到EFI分区)</strong></p>
+<p>  <strong>第二步是获取SDI文件.SDI文件的位置在和WEPE64.WIM同一个文件夹里.名字叫做WEPE.SDI.把他复制到U盘里的任意位置即可.</strong></p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/YgeiaKOLVSDsfg4icI9HHWyeiaI3nHqlCAGfibhB47ic6lrdSgmaXHOtiapcs17mXB2nFa4Tibia11u4Ux2LqRNBcCjfzA/640?wx_fmt=gif&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="bc019790400eaefc742c707ecf5f8546.gif"></p>
+<hr>
+<h3 id="编辑BCD"><a href="#编辑BCD" class="headerlink" title="编辑BCD"></a>编辑BCD</h3><hr>
+<p>  <strong>这里编辑的BCD文件,一定是U盘里的EFI分区里的BCD文件,不是电脑系统的BCD文件.理由很简单,这个BCD文件必须跟着U盘走.不然的话,换一个电脑这个启动盘就不能启动了.</strong></p>
+<p>  <strong>编辑ramdisk启动的BCD菜单的方法已经在上一篇文章 《Ramdisk启动模式简介》里面介绍了.在这里不再赘述.</strong></p>
+<hr>
+<h3 id="启动试验"><a href="#启动试验" class="headerlink" title="启动试验"></a>启动试验</h3><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/YgeiaKOLVSDsfg4icI9HHWyeiaI3nHqlCAGYSicziaFRZyzRk2ebPCtfsVTUXsXZ90ibbpR69ecAkDHdAia81M8GtV1wA/640?wx_fmt=gif&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="dc982ee83a69708a22f47e90b5465571.gif"></p>
+<p>  <strong>启动成功.</strong></p>
+<p>  <strong>综上所述,我们可以在不格式化U盘的情况下手搓一个启动U盘.这也能够加深我们对于启动系统的理解.</strong></p>
+<h2 id="所以-我很不理解为什么制作启动盘的工具一定要把我们的U盘格式化……"><a href="#所以-我很不理解为什么制作启动盘的工具一定要把我们的U盘格式化……" class="headerlink" title="所以,我很不理解为什么制作启动盘的工具一定要把我们的U盘格式化……"></a><strong>所以,我很不理解为什么制作启动盘的工具一定要把我们的U盘格式化……</strong></h2></main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="打破-Microsoft-Office-只能安装在C盘的魔咒"><a href="#打破-Microsoft-Office-只能安装在C盘的魔咒" class="headerlink" title="打破 Microsoft Office 只能安装在C盘的魔咒!"></a>打破 Microsoft Office 只能安装在C盘的魔咒!</h1><p>不知从何时开始,Office软件似乎不再让我们选择安装位置,只能强制安装在C盘里面.</p>
+<p>看着接近4GB大小的Office套件,我们欲哭无泪,仿佛无论如何也不能把Office这坨”屎山”放到别处.</p>
+<p>但实际上,我们可以通过”偷梁换栋”,”瞒天过海”的方法,把Office移动到其他的分区甚至磁盘中.</p>
+<p>今天,笔者将详细介绍如何把office移动到其他地方,释放我们的C盘空间!</p>
+<hr>
+<h2 id="目录链接"><a href="#目录链接" class="headerlink" title="目录链接"></a>目录链接</h2><p>我们的主要操作方法就是给office安装文件夹创建目录链接(软连接).</p>
+<p>目录链接是什么呢?</p>
+<p>我们类比一下快捷方式.快捷方式就像一个小箭头,指向并打开他的目标文件或文件夹.</p>
+<p>目录链接与快捷方式相似,但又有所不同.<strong>目录链接仿佛”真正的”把它所指向的文件”移动到”了这个目录链接所在的位置.</strong></p>
+<p>事实上,目录链接也属于Windows系统中众多”快捷方式”的一种.</p>
+<p>稍后我将介绍如何创建目录链接.</p>
+<ul>
+<li>举个例子:</li>
+</ul>
+<p>我给位于<code>C:\Windows\system32</code>的<code>system32</code>文件夹在<code>D:\000\</code>里面创建一个目录链接.</p>
+<p>那么,这个目录链接所在的位置便是<code>D:\000\system32</code></p>
+<p>当我点开这个目录链接时,我们可以看见,在文件资源管理器中,地址栏里面显示的路径为:<code>D:\000\system32</code>,而并不像普通的快捷方式一样,地址栏里面显示的路径会自动跳转到<code>C:\Windows\system32</code>.</p>
+<p>并且,点开这个目录链接后,我们可以看见<code>system32</code>文件夹里面的所有文件,就和真正打开了<code>C:\Windows\system32</code>一样.</p>
+<h3 id="所以-这样我们就可以欺骗操作系统和软件了"><a href="#所以-这样我们就可以欺骗操作系统和软件了" class="headerlink" title="所以,这样我们就可以欺骗操作系统和软件了."></a>所以,这样我们就可以欺骗操作系统和软件了.</h3><p>由于目录链接是基于磁盘文件系统层面的操作,所以操作系统和应用程序对目录链接的存在是无感的.操作系统和软件会真的以为他们所访问的目录链接是一个真实存在在那个位置的文件夹.然而实际上,他只不过是一个链接的位置而已.</p>
+<hr>
+<h2 id="如何创建目录链接"><a href="#如何创建目录链接" class="headerlink" title="如何创建目录链接?"></a>如何创建目录链接?</h2><p>我们可以使用第三方小工具:link shell extension.</p>
+<p>link shell extension下载网址:</p>
+<p><code>https://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_X64.exe</code></p>
+<p>安装后,我们在一个文件或文件夹上面右键,就可以看见一个选项是”<code>选择原链接点</code>“.这就是LSE的右键扩展壳子.</p>
+<p>点击”选择原链接点”之后,我们在电脑的任意其他目录位置右键,可以看见”<code>创建为...</code>“</p>
+<p>在这里,我们可以把刚刚选择原链接点的文件或文件夹创建为硬链接,符号链接,目录链接,等等等…</p>
+<p>点击”目录链接”,我们就可以为一个文件夹创建目录链接了.</p>
+<blockquote>
+<p>如果我们移动一个目录链接,会发生什么?</p>
+<p>答案是:这个目录链接的源文件夹会被一股脑的移动到那个目标的位置,而并不是只移动一个目录链接.</p>
+<p>这是因为,<strong>我们对目录链接的操作其实就是我们对他的源文件夹的操作.</strong></p>
+</blockquote>
+<hr>
+<h2 id="如何移动-Microsoft-Office"><a href="#如何移动-Microsoft-Office" class="headerlink" title="如何移动 Microsoft Office?"></a>如何移动 Microsoft Office?</h2><p>首先,我们需要找到 Office 的<strong>安装文件夹.</strong></p>
+<p>对于64位的office,安装文件夹存在于<code>C:\Program Files\Microsoft Office</code>.</p>
+<p>对于32位office,安装文件夹存在于<code>C:\Program Files(x86)\Microsoft Office</code>.</p>
+<p>笔者使用64位示范,32位同理,在新创建的文件夹后面加<code>(x86)</code>即可.</p>
+<ul>
+<li>目的:将office安装文件夹移动至D盘里面,保持软件的可用性.</li>
+</ul>
+<p>首先,在D盘根目录里面创建一个文件夹.命名为:<code>program files</code>.</p>
+<p>然后,把<code>C:\Program Files\Microsoft Office</code>这个Microsoft Office文件夹复制到刚刚创建的D盘里的<code>program files</code>文件夹里.</p>
+<p>删除C盘里的Microsoft Office文件夹.</p>
+<p>在刚刚复制好的D盘的<code>Microsoft Office</code>文件夹上面右键,点击:选择原链接点.</p>
+<p>回到C盘删除Microsoft Office文件夹的目录位置(也就是<code>C:\Program Files\</code>)右键,<code>创建为...-&gt;目录链接点</code></p>
+<p>保持目录链接的名字仍然为<code>Microsoft Office</code>.</p>
+<blockquote>
+<p>如果遇到文件被占用权限不足无法删除之类的情况,请在PE系统下操作.</p>
+</blockquote>
+<p>大功告成.</p>
+<p>这样,我们就把 Microsoft Office 软件移动到了D盘里面.</p>
+<hr>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>我们不难发现,这个方法不仅适用于Office,而是具有一定的普适性.</p>
+<p>对于一些常规无法改变位置的文件夹来说(比如某些大型游戏的文件夹,某些工程软件的文件夹),我们都可以使用创建目录连接的方法来移动他们,通过瞒天过海,偷梁换柱,达到节约C盘的目的.</p>
+<p>有时候,甚至一些Windows重要的系统文件都可以使用目录链接移动到其他位置,但是,对于不熟悉的人来说,建议谨慎操作.</p>
+<p>笔者尝试过将Windows系统文件夹通过目录链接连接到别的分区,导致系统无法启动.把用户文件夹链接到别的分区也导致系统异常.</p>
+<p>然而,把整个的<code>program files</code>和<code>program files(x86)</code>链接到其他位置并无大碍.</p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+
+    typo
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">吕了了的个人主页</a>
+    <ul class="nav">
+      
+      <li><a href="/%E6%96%87%E7%AB%A0">archives</a></li>
+      
+      <li><a href="/%E5%85%B3%E4%BA%8E">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title"></div>
+  <div class="post-meta">
+    <div class="date">2025 March 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><h1 id="WIMBOOT启动模式"><a href="#WIMBOOT启动模式" class="headerlink" title="WIMBOOT启动模式"></a>WIMBOOT启动模式</h1><h2 id="wimboot简述"><a href="#wimboot简述" class="headerlink" title="wimboot简述"></a>wimboot简述</h2><p><strong>wimboot,是微软公司从Windows8开始引入的新功能,旨在减少系统文件对C盘的占用,提高计算机的运行速度,为各个电脑生产厂家更加方便的初始化他们的计算机.对于运维人员来说,我们最看重的是wimboot在空间占用上的优越特征.使用wimboot模式配置的电脑,相比普通模式,可以一次性的节省至少20GB的C盘空间.笔者的电脑使用wimboot前C盘占用40GB,使用wimboot后C盘占用15GB,足见wimboot的节约.</strong></p>
+<p>  <strong>此外,由于wimboot的本身特性,使用wimboot启动的计算机还有一个附加的”福利”.即发生意外时可以实现系统还原,而不需要重装系统.</strong></p>
+<p>  <strong>那么,是什么原理让wimboot如此强大呢?事实上,使用wimboot启动的操作系统的C盘里的所有系统文件都没有真正的放在C盘里,我们在C盘里看到的文件都是一种名叫”指针文件”的东西.</strong></p>
+<p>  <strong>指针文件能够指向一个wim包里的文件,就像箭头一样.然而,指针文件的体积几乎是可以忽略不计的,所以C盘的实际占用量很小.当我们使用C盘里的系统文件时,系统会进行动态解压缩,把wim包里我们使用的那些文件解压释放到内存里.当我们不用他们时,系统又把他们从内存里删除.所以,使用wimboot模式可能导致你的计算机内存占用比往常要稍微高一些.</strong></p>
+<p>  <strong>wimboot优点如此之多,那么如何驾驭这一神奇的启动方式呢?请你耐心往下看.</strong></p>
+<h2 id="使用wimboot启动VM虚拟机"><a href="#使用wimboot启动VM虚拟机" class="headerlink" title="使用wimboot启动VM虚拟机"></a>使用wimboot启动VM虚拟机</h2><p>  <strong>wimboot,顾名思义,是一种使用wim包来启动系统的方式.所以,首要的一步是获取wim包.wim包实际上就是*.wim压缩文件.在微软的Windows10ISO镜像文件里,按照目录 sources-&gt;install.wim可以获取这个文件.这是一个没有经过安装初始化的Windows镜像wim包.</strong></p>
+<p>  <strong>事实上,我们使用winntsetup安装系统时,winntsetup就是把这个install.wim里的文件释放到你选择的系统盘里.可以说,对于熟练系统安装的人员来说,他们甚至可以直接保存install.wim这个文件,而不需要保存ISO文件.</strong></p>
+<p>  <strong>我们还有第二种方法自己制作一个wim镜像包.通常使用的工具是Dism++这个硬核软件.使用dism++的系统备份功能,我们可以像”拍照”一样把自己现在的系统保存到这个wim包里.当我们的系统发生故障,可以使用这个wim包把系统恢复到备份时的状态.</strong></p>
+<h3 id="使用Windows10ISO原版wim包启动VM虚拟机"><a href="#使用Windows10ISO原版wim包启动VM虚拟机" class="headerlink" title="使用Windows10ISO原版wim包启动VM虚拟机"></a>使用Windows10ISO原版wim包启动VM虚拟机</h3><p><strong>操作方法:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.启动VM虚拟机到微pe</span><br><span class="line">2.把Windows10ISO添加进虚拟机的光驱</span><br><span class="line">3.对VM虚拟机的磁盘进行初始化,笔者将他分成了3个区,ESP分区,C盘35GB,F盘25GB</span><br><span class="line">4.打开Windows10的ISO,选择 sources-&gt;install.wim,把他复制到VM虚拟机的任意磁盘里.(笔者复制到D盘里)</span><br><span class="line">5.使用winntsetup,第一项 选择安装映像文件的位置,选择你复制出来的install.wim</span><br><span class="line">6.下面两个选项与正常安装的选择方式相同.</span><br><span class="line">7.唯一的不同之处是,右下角的启动模式选择 wimboot</span><br><span class="line">8.安装,确定</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/23winntsetupwimboot.png" alt="ad7b0571402b1da2dc8c71ab9d9d7f7b.png"> </p>
+<p> <strong>你可能会发现,wimboot安装系统的方式比普通方法更快.这是因为创建指针文件不需要花费过长的时间.</strong></p>
+<p>  <strong>重启进入WindowsOOBE系统开箱阶段.</strong></p>
+<p><strong>如果你的电脑厂家在出厂的时候给你的电脑硬盘分配里一个恢复分区,那么你就可以把Dism++系统备份做的那个wim包放到这个分区里,然后用它做一个wimboot启动.华为电脑一般会有这个分区,笔者的电脑有一个12GB的这样的分区.</strong></p>
+<p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/23%E6%88%91%E7%9A%84%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86.png" alt="ca434f0e608249a2c90b352b9e0e34cd.png"></p>
+<p>  <strong>如果系统出现故障,可以进入微pe,重新做一次wimboot即可.</strong></p>
+<blockquote>
+<p>Dism++里的极限压缩镜像虽然能把系统压缩的很小,但是他产生的是.esd文件,无法作wimboot启动.</p>
+</blockquote>
+<p>  <strong>此外,Dism++也可以在pe里面制作wimboot启动.操作其实很简单,有兴趣的同学可以自己尝试一下.</strong></p>
+<p>  <strong>如果你看那个分区在文件资源管理器里十分碍眼,可以在 磁盘管理 里面删除它的驱动器号.这不会导致系统故障.</strong></p>
+<h3 id="定期备份系统是一个很好的习惯"><a href="#定期备份系统是一个很好的习惯" class="headerlink" title="定期备份系统是一个很好的习惯."></a>定期备份系统是一个很好的习惯.</h3><p><img src="https://gitee.com/swodni/picture-bed/raw/master/2223/23dism%20%20%E5%A4%87%E4%BB%BD%E7%B3%BB%E7%BB%9F.png" alt="b1d9b11ac2eefa0858bda47266c239d0.png"></p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © 2025_lvlele</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>
